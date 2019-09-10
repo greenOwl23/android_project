@@ -25,7 +25,7 @@ import java.util.Date;
 public class HistoryFragment extends Fragment {
 
     private HistoryViewModel dashboardViewModel;
-    private ArrayList<Transaction> example;
+    private ArrayList<Transaction> transactions;
 
     private RecyclerView recyclerView;
     private TransactionAdapter adapter;
@@ -36,14 +36,14 @@ public class HistoryFragment extends Fragment {
         dashboardViewModel =
                 ViewModelProviders.of(this).get(HistoryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_history, container, false);
-
-        createExample();
+        Category Food = new Category("Food");
+        createExample(new Date(),"",Food,5);
 
         recyclerView = (RecyclerView) root.findViewById(R.id.history_list);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new TransactionAdapter(example); // you can use that adapter after for loop in response(APICALLMETHOD)
+        adapter = new TransactionAdapter(transactions); // you can use that adapter after for loop in response(APICALLMETHOD)
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new TransactionAdapter.onItemClickListener() {
@@ -57,18 +57,9 @@ public class HistoryFragment extends Fragment {
         return root;
     }
 
-    public void createExample(){
-        Category Food = new Category("Food");
-        Category Car = new Category("Car");
-        Category Health = new Category("Health");
-
-        example = new ArrayList<>();
-
-        example.add(new Transaction(new Date(),"Income",Food,50000));
-        example.add(new Transaction(new Date(),"Expense",Food,500));
-        example.add(new Transaction(new Date(),"Expense",Car,5000));
-        example.add(new Transaction(new Date(),"Expense",Health,1000));
-        example.add(new Transaction(new Date(),"Income",Food,50000));
+    public void createExample(Date date, String type, Category category, int amount){
+        transactions = new ArrayList<>();
+        transactions.add(new Transaction(date,type,category,amount));
     }
 
 }

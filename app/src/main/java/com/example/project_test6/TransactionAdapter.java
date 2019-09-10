@@ -36,7 +36,7 @@ public class TransactionAdapter extends RecyclerView.Adapter <TransactionAdapter
             timestamp = itemView.findViewById(R.id.timestamp);
             type = itemView.findViewById(R.id.type);
 
-//            if (type.getText().toString().trim().contains("m")){
+//            if (type.getText().toString().equals("Income")){
 //                type.setTextColor(Color.GREEN);
 //            }else{
 //                type.setTextColor(Color.RED);
