@@ -36,8 +36,13 @@ public class HistoryFragment extends Fragment {
         dashboardViewModel =
                 ViewModelProviders.of(this).get(HistoryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_history, container, false);
+        transactions = new ArrayList<>();
         Category Food = new Category("Food");
-        createExample(new Date(),"",Food,5);
+        createExample(new Date(),"Income",Food,50000);
+        createExample(new Date(),"Expense",Food,500);
+        createExample(new Date(),"Income",Food,5000);
+        createExample(new Date(),"Expense",Food,500);
+        createExample(new Date(),"Expense",Food,5000);
 
         recyclerView = (RecyclerView) root.findViewById(R.id.history_list);
         recyclerView.setHasFixedSize(true);
@@ -49,8 +54,6 @@ public class HistoryFragment extends Fragment {
         adapter.setOnItemClickListener(new TransactionAdapter.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Intent intent = new Intent(getActivity(), Popup.class);
-                startActivity(intent);
             }
         });
 
@@ -58,7 +61,6 @@ public class HistoryFragment extends Fragment {
     }
 
     public void createExample(Date date, String type, Category category, int amount){
-        transactions = new ArrayList<>();
         transactions.add(new Transaction(date,type,category,amount));
     }
 

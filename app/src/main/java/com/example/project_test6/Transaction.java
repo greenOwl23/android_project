@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Transaction {
@@ -19,10 +20,6 @@ public class Transaction {
         this.type = type;
         this.category = category;
         this.amount = amount;
-    }
-
-    public void callpopup(){
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

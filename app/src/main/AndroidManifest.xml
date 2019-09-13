@@ -14,7 +14,7 @@
         <activity android:name=".insert_form" android:theme="@style/popup"></activity>
         <activity android:name=".Popup" android:theme="@style/popup"/><activity
             android:name=".MainPage"
-            android:label="@string/title_activity_mainpage" />
+            android:label="@string/title_activity_mainpage"/>
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

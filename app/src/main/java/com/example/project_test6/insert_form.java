@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -87,8 +88,8 @@ public class insert_form extends Activity {
 
             @Override
             public void onClick(View v) {
-                Transaction a = new Transaction(new Date(),typeList.toString(),Food,Integer.parseInt(amount.getText().toString()));
-
+                Intent intent = new Intent(insert_form.this,HistoryFragment.class);
+                startActivity(intent);
             }
 
         });

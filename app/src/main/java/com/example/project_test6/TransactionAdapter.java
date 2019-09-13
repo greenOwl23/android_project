@@ -35,13 +35,6 @@ public class TransactionAdapter extends RecyclerView.Adapter <TransactionAdapter
             super(itemView);
             timestamp = itemView.findViewById(R.id.timestamp);
             type = itemView.findViewById(R.id.type);
-
-//            if (type.getText().toString().equals("Income")){
-//                type.setTextColor(Color.GREEN);
-//            }else{
-//                type.setTextColor(Color.RED);
-//            }
-
             category = itemView.findViewById(R.id.category);
             amount = itemView.findViewById(R.id.amount);
 
@@ -78,6 +71,11 @@ public class TransactionAdapter extends RecyclerView.Adapter <TransactionAdapter
 
         holder.timestamp.setText(current_transaction.getTimestamp());
         holder.type.setText(current_transaction.getType());
+        if (holder.type.getText().toString().equals("Income")){
+            holder.type.setTextColor(Color.GREEN);
+        }else{
+            holder.type.setTextColor(Color.RED);
+        }
         holder.category.setText(current_transaction.getCategory());
         holder.amount.setText(current_transaction.getAmount());
 
