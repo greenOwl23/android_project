@@ -32,6 +32,7 @@
         android:layout_marginRight="188dp"
         android:text="John"
         android:textSize="20dp"
+        android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,6 +47,7 @@
         android:text="Account Balance: 50000"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_balance" />
 
@@ -59,6 +61,7 @@
         android:text="lvl: 10"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
@@ -77,9 +80,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="272dp"
-        android:layout_marginRight="272dp"
-        android:text="Achievement"
+        android:layout_marginEnd="248dp"
+        android:layout_marginRight="248dp"
+        android:text="Achievements:"
+        android:textColor="#000000"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,6 +93,7 @@
         android:layout_width="411dp"
         android:layout_height="509dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ach" />
 

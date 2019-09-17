@@ -81,10 +81,11 @@ public class TransactionAdapter extends RecyclerView.Adapter <TransactionAdapter
         }
         holder.type.setText(current_transaction.getType());
         holder.category.setText(current_transaction.getCategory());
-        holder.amount.setText(current_transaction.getAmount());
         if (holder.type.getText().toString().equals("Income")){
+            holder.amount.setText("+"+current_transaction.getAmount());
             holder.amount.setTextColor(Color.GREEN);
         }else{
+            holder.amount.setText("-"+current_transaction.getAmount());
             holder.amount.setTextColor(Color.RED);
         }
 
