@@ -48,7 +48,7 @@ public class HistoryFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new TransactionAdapter(transactions); // you can use that adapter after for loop in response(APICALLMETHOD)
+        adapter = new TransactionAdapter(transactions);
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new TransactionAdapter.onItemClickListener() {

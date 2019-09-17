@@ -88,8 +88,7 @@ public class insert_form extends Activity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(insert_form.this,HistoryFragment.class);
-                startActivity(intent);
+
             }
 
         });

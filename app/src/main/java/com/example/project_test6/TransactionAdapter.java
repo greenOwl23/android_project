@@ -5,10 +5,12 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ public class TransactionAdapter extends RecyclerView.Adapter <TransactionAdapter
         public TextView type;
         public TextView category;
         public TextView amount;
+        public CardView card;
 
         public ViewHolder(@NonNull View itemView, final onItemClickListener listener) {
             super(itemView);
@@ -37,6 +40,7 @@ public class TransactionAdapter extends RecyclerView.Adapter <TransactionAdapter
             type = itemView.findViewById(R.id.type);
             category = itemView.findViewById(R.id.category);
             amount = itemView.findViewById(R.id.amount);
+            card = itemView.findViewById(R.id.card1);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -68,16 +72,21 @@ public class TransactionAdapter extends RecyclerView.Adapter <TransactionAdapter
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Transaction current_transaction = this.example.get(position);
-
         holder.timestamp.setText(current_transaction.getTimestamp());
-        holder.type.setText(current_transaction.getType());
-        if (holder.type.getText().toString().equals("Income")){
-            holder.type.setTextColor(Color.GREEN);
-        }else{
-            holder.type.setTextColor(Color.RED);
+        String prev = position==0? "":this.example.get(position-1).getTimestamp();
+
+        if (holder.timestamp.getText().equals(prev)){
+            holder.timestamp.setVisibility(View.GONE);
+            holder.card.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
         }
+        holder.type.setText(current_transaction.getType());
         holder.category.setText(current_transaction.getCategory());
         holder.amount.setText(current_transaction.getAmount());
+        if (holder.type.getText().toString().equals("Income")){
+            holder.amount.setTextColor(Color.GREEN);
+        }else{
+            holder.amount.setTextColor(Color.RED);
+        }
 
     }
 
