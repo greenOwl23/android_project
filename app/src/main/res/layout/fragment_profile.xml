@@ -5,96 +5,128 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/user_img"
-        android:layout_width="101dp"
-        android:layout_height="101dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="267dp"
-        android:layout_marginRight="267dp"
-        android:layout_marginBottom="587dp"
-        android:elevation="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintCircleRadius="5dp"
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="406dp"
+        android:layout_height="171dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/user_img" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/username"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="188dp"
-        android:layout_marginRight="188dp"
-        android:text="John"
-        android:textSize="20dp"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/user_img"
+            android:layout_width="107dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="60dp"
+            app:srcCompat="@drawable/ic_account_circle_black_24dp" />
 
-    <TextView
-        android:id="@+id/user_lvl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:text="Account Balance: 50000"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_balance" />
 
-    <TextView
-        android:id="@+id/account_balance"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="188dp"
-        android:layout_marginRight="188dp"
-        android:text="lvl: 10"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="29dp"
+            android:text="John"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.223"
-        tools:layout_editor_absoluteX="0dp" />
+        <TextView
+            android:id="@+id/saving"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="285dp"
+            android:layout_marginTop="70dp"
+            android:text="Saving: 500"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/ach"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="248dp"
-        android:layout_marginRight="248dp"
-        android:text="Achievements:"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        <TextView
+            android:id="@+id/account_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="30dp"
+            android:text="Account Balance: 50000"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-    <ListView
+        <TextView
+            android:id="@+id/user_lvl"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="110dp"
+            android:text="Level :4"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+    <FrameLayout
         android:layout_width="411dp"
-        android:layout_height="509dp"
+        android:layout_height="560dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ach" />
+        android:layout_margin="4dp"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/ach_sec"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@color/colorPrimary"
+            android:layout_height="39dp"
+            android:text="Achievements" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:id="@+id/ach_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="29dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="4dp"
+                android:text="Achievement"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/condition_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="31dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="4dp"
+                android:text="Condition"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/counter_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="31dp"
+                android:layout_marginLeft="300dp"
+                android:layout_marginTop="4dp"
+                android:text="Counter"
+                android:textColor="#FFFFFF" />
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ach"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="90dp" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

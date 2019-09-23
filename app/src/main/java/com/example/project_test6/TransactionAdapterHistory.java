@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class TransactionAdapter extends RecyclerView.Adapter <TransactionAdapter.ViewHolder> {
+public class TransactionAdapterHistory extends RecyclerView.Adapter <TransactionAdapterHistory.ViewHolder> {
     private ArrayList<Transaction> example;
     private onItemClickListener listener;
 
@@ -56,7 +56,7 @@ public class TransactionAdapter extends RecyclerView.Adapter <TransactionAdapter
         }
     }
 
-    public TransactionAdapter(ArrayList<Transaction> example) {
+    public TransactionAdapterHistory(ArrayList<Transaction> example) {
         this.example = example;
     }
 

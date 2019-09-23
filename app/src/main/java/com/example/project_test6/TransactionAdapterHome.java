@@ -5,7 +5,6 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,14 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class TransactionAdapter2 extends RecyclerView.Adapter <TransactionAdapter.ViewHolder>{
+public class TransactionAdapterHome extends RecyclerView.Adapter <TransactionAdapterHistory.ViewHolder>{
     private ArrayList<Transaction> example;
-    private TransactionAdapter.onItemClickListener listener;
+    private TransactionAdapterHistory.onItemClickListener listener;
 
     public interface onItemClickListener{
         void onItemClick(int position);
     }
-    public void setOnItemClickListener(TransactionAdapter.onItemClickListener listener){
+    public void setOnItemClickListener(TransactionAdapterHistory.onItemClickListener listener){
         this.listener = listener;
     }
 
@@ -33,7 +32,7 @@ public class TransactionAdapter2 extends RecyclerView.Adapter <TransactionAdapte
         public TextView amount;
         public CardView card;
 
-        public ViewHolder(@NonNull View itemView, final TransactionAdapter.onItemClickListener listener) {
+        public ViewHolder(@NonNull View itemView, final TransactionAdapterHistory.onItemClickListener listener) {
             super(itemView);
             type = itemView.findViewById(R.id.type);
             category = itemView.findViewById(R.id.category);
@@ -54,19 +53,19 @@ public class TransactionAdapter2 extends RecyclerView.Adapter <TransactionAdapte
         }
     }
 
-    public TransactionAdapter2(ArrayList<Transaction> example) {
+    public TransactionAdapterHome(ArrayList<Transaction> example) {
         this.example = example;
     }
 
     @NonNull
-    public TransactionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TransactionAdapterHistory.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.template2,parent,false);
-        TransactionAdapter.ViewHolder vh = new TransactionAdapter.ViewHolder(v,listener);
+        TransactionAdapterHistory.ViewHolder vh = new TransactionAdapterHistory.ViewHolder(v,listener);
         return vh;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void onBindViewHolder(@NonNull TransactionAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TransactionAdapterHistory.ViewHolder holder, int position) {
         Transaction current_transaction = this.example.get(position);
         holder.type.setText(current_transaction.getType());
         holder.category.setText(current_transaction.getCategory());
