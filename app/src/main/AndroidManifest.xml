@@ -11,7 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Register"></activity>
+        <activity android:name=".UserSetting"
+            android:theme="@style/popup"></activity>
+        <activity android:name=".RegisterCont" />
+        <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity
             android:name=".insert_form"

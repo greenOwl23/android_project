@@ -19,7 +19,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="120dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/button_round"
         android:clickable="true"
         android:padding="8dp"
         android:text="Login"
@@ -27,11 +27,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_password"
+        app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.758" />
 
     <EditText
-        android:id="@+id/new_password"
+        android:id="@+id/password"
         android:layout_width="328dp"
         android:layout_height="44dp"
         android:layout_marginStart="24dp"
@@ -41,16 +41,16 @@
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
-        android:textColorHint="#FFFFFF"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_username" />
+        app:layout_constraintTop_toBottomOf="@+id/email_login" />
 
     <EditText
-        android:id="@+id/new_username"
+        android:id="@+id/email_login"
         android:layout_width="330dp"
         android:layout_height="51dp"
         android:layout_marginStart="24dp"
@@ -87,7 +87,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
         android:clickable="true"
-        android:text="Register Here"
+        android:text="@string/register"
+        android:backgroundTint="#FFFFFF"
+        android:padding="8dp"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
