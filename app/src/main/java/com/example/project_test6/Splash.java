@@ -9,18 +9,36 @@ import android.os.Handler;
 public class Splash extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT = 3000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        boolean test = false;
+
+        if (test == true){
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
                     Intent homeIntent = new Intent(Splash.this, MainPage.class);
                     startActivity(homeIntent);
                     finish();
-            }
-        },SPLASH_TIME_OUT);
+                }
+            }, SPLASH_TIME_OUT);
+        }
+        else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent homeIntent = new Intent(Splash.this, Login.class);
+                    startActivity(homeIntent);
+                    finish();
+                }
+            }, SPLASH_TIME_OUT);
+        }
+
+
+
     }
 }
