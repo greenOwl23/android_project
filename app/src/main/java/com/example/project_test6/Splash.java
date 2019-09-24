@@ -6,18 +6,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-public class Splash extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+public class Splash extends AppCompatActivity {
+    private FirebaseAuth mAuth;
     private static int SPLASH_TIME_OUT = 3000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
-
-        boolean test = false;
-
-        if (test == true){
+        mAuth = FirebaseAuth.getInstance();
+//        boolean test = false;
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null){
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
