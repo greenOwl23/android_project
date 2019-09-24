@@ -14,9 +14,6 @@
         <activity android:name=".Register"></activity>
         <activity android:name=".Login" />
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity
             android:name=".insert_form"
             android:theme="@style/popup" />
         <activity
