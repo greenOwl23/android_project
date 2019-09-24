@@ -52,6 +52,8 @@ public class ProfileFragment extends Fragment {
 
     }
     public void createAch(String ach, String condition, int counter){
+
+        //
         aches.add(new ach(ach,condition,counter));
     }
 
