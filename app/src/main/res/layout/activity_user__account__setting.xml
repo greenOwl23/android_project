@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Register">
+
+
+    <TextView
+        android:id="@+id/user_Account_Setting_Heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="User Account Settings"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/email_registered"
+        android:layout_width="227dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="john@gmail.com"
+        android:drawableEnd="@drawable/ic_edit_white_24dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/display_name"
+        app:layout_constraintVertical_bias="0.0"
+        android:drawableRight="@drawable/ic_edit_white_24dp" />
+
+    <EditText
+        android:id="@+id/display_name"
+        android:layout_width="227dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:text="John"
+        android:inputType="text"
+        android:drawableEnd="@drawable/ic_edit_white_24dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_Account_Setting_Heading"
+        android:drawableRight="@drawable/ic_edit_white_24dp" />
+
+    <EditText
+        android:id="@+id/current_Password"
+        android:layout_width="227dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="276dp"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:text="123456"
+        android:inputType="textPassword"
+        android:drawableEnd="@drawable/ic_edit_white_24dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_registered"
+        app:layout_constraintVertical_bias="0.0"
+        android:drawableRight="@drawable/ic_edit_white_24dp" />
+
+    <Button
+        android:id="@+id/save_Button"
+        android:layout_width="137dp"
+        android:layout_height="46dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/button_round"
+        android:clickable="true"
+        android:padding="8dp"
+        android:text="Save"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/current_Password"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

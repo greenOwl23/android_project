@@ -27,7 +27,7 @@ public class UserSetting extends AppCompatActivity {
         button_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserSetting.this, MainPage.class));
+                startActivity(new Intent(UserSetting.this, User_Account_Setting.class));
             }
         });
 
