@@ -9,7 +9,7 @@ public class user {
     private int saving_goal;
     private int lvl;
     private int balance;
-    private Transaction transaction;
+    private Transaction transaction[];
 
     ArrayList<Category> categories = createCategories();
 
@@ -24,13 +24,13 @@ public class user {
         return categories;
     }
 
-    public user(String username, String password){
+//    public user(String username, String password){
+//        this.username = username;
+//        this.password = password;
+//
+//    }
 
-    }
-
-    public user(String username, String password, int daily_budget, int saving_goal, int lvl, int balance, Transaction transaction){
-     this.username = username;
-     this.password = password;
+    public user(int daily_budget, int saving_goal, int lvl, int balance, Transaction transaction[]){
      this.daily_budget = daily_budget;
      this.saving_goal = saving_goal;
      this.lvl = lvl;

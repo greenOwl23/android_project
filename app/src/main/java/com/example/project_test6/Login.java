@@ -25,6 +25,8 @@ public class Login extends AppCompatActivity {
     private EditText new_username;
     private EditText new_password;
     private Button button;
+    private TextView email;
+    private TextView password;
     private TextView register;
     private Context context;
     String TAG = "Login";
@@ -34,16 +36,25 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
-        new_username = findViewById(R.id.new_username);
-        new_password = findViewById(R.id.new_password);
+        new_username = findViewById(R.id.email_login);
+        new_password = findViewById(R.id.password);
         button= findViewById(R.id.login_Button);
+//        email = findViewById(R.id.email_login);
+//        password = findViewById(R.id.password);
         register = findViewById(R.id.register);
+
+        register.setText(R.string.register);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+//<<<<<<< HEAD
                 //Log in the user
 //                startActivity(new Intent(Login.this, MainPage.class));
                 signIn();
+//=======
+                //Login the user
+//                startActivity(new Intent(Login.this, MainPage.class));
+//>>>>>>> 3a72a548f0794335ccc99382c4c63b9eacaed02d
             }
         });
 
@@ -65,7 +76,8 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            user = mAuth.getCurrentUser();
+
+//                            user = mAuth.getCurrentUser();
                             startActivity(new Intent(Login.this, MainPage.class));
                         } else {
                             // If sign in fails, display a message to the user.

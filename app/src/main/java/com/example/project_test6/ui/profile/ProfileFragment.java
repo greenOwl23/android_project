@@ -1,13 +1,20 @@
 package com.example.project_test6.ui.profile;
 
+//<<<<<<< HEAD
 import android.content.Context;
+//=======
+//>>>>>>> 3a72a548f0794335ccc99382c4c63b9eacaed02d
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+//<<<<<<< HEAD
 import android.widget.Button;
+//=======
+import android.widget.ImageView;
+//>>>>>>> 3a72a548f0794335ccc99382c4c63b9eacaed02d
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_test6.Login;
 import com.example.project_test6.R;
+import com.example.project_test6.UserSetting;
 import com.example.project_test6.ach;
 import com.example.project_test6.achAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,10 +37,10 @@ public class ProfileFragment extends Fragment {
 
     private ArrayList<ach> aches;
     private ProfileViewModel profileViewModel;
-
     private RecyclerView recyclerView;
     private achAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private ImageView userImg;
     private ProfileViewModel notificationsViewModel;
 
     private Button btn_logout;
@@ -41,14 +49,6 @@ public class ProfileFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        btn_logout = root.findViewById(R.id.btn_logout);
-        btn_logout.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getActivity(), Login.class));
-                Log.d(TAG,"LOG OUT");
-            }
-        });
 
         aches = new ArrayList<>();
         createAch("Banana","Eat a banana",2);
@@ -64,6 +64,13 @@ public class ProfileFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         adapter = new achAdapter(aches);
         recyclerView.setAdapter(adapter);
+
+        userImg = root.findViewById(R.id.user_img);
+        userImg.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), UserSetting.class));
+            }
+        });
 
         return root;
 
