@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".BudgetSetting"></activity>
+        <activity android:name=".BalanceSetting"></activity>
+        <activity android:name=".BudgetSetting" />
         <activity android:name=".User_Account_Setting" />
         <activity
             android:name=".UserSetting"

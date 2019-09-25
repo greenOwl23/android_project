@@ -74,6 +74,7 @@ public class HistoryFragment extends Fragment {
         adapter.setOnItemClickListener(new TransactionAdapterHistory.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
             }
         });
 

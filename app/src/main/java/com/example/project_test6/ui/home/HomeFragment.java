@@ -54,8 +54,7 @@ public class HomeFragment extends Fragment {
         createTransaction(new Date(),"Expense",Food,500);
         createTransaction(new Date(),"Expense",Food,500);
         createTransaction(new Date(),"Expense",Food,500);
-        createTransaction(new Date(),"Expense",Food,500);
-        if (transactions.size()>6){
+        if (transactions.size()>5){
             transactions.remove(0);
         }
 

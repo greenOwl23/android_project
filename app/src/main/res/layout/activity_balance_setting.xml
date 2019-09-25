@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Register">
+
+
+    <TextView
+        android:id="@+id/balance_Setting_Heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Account Balance Setting"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.012" />
+
+
+    <EditText
+        android:id="@+id/balance_Reset"
+        android:layout_width="227dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#FFFFFF"
+        android:drawableEnd="@drawable/ic_edit_white_24dp"
+        android:drawableRight="@drawable/ic_edit_white_24dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="50000"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/balance_Setting_Heading"
+        app:layout_constraintVertical_bias="0.041" />
+
+    <Button
+        android:id="@+id/save_Button"
+        android:layout_width="137dp"
+        android:layout_height="46dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/button_round"
+        android:clickable="true"
+        android:padding="8dp"
+        android:text="Save"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/balance_Reset"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/budget_reset_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:text="Current balance"
+        android:textColor="#FFFFFF"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/balance_Reset"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

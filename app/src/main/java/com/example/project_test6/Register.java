@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Register extends AppCompatActivity {
 
@@ -15,6 +17,7 @@ public class Register extends AppCompatActivity {
     private TextView email;
     private TextView password;
     private TextView passwordConfirm;
+    private FirebaseUser current_user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,5 +37,14 @@ public class Register extends AppCompatActivity {
             }
         });
     }
+//    protected void onSuccessLogin(){
+////        String username = user.getEmail();
+//        // Write new user
+//        writeNewUser(user.getUid(), user.getEmail());
+//    }
+//    public void writeNewUser(String userId, String email) {
+//        User user = new User(email);
+//        dbRoot.child("users").child(userId).setValue(user);
+//    }
 
 }
