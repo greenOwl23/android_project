@@ -28,28 +28,45 @@
         android:layout_height="61dp"
         android:layout_marginTop="32dp"
         android:backgroundTint="#FFFFFF"
-        android:ems="10"
-        android:text="John"
-        android:inputType="text"
         android:drawableEnd="@drawable/ic_edit_white_24dp"
+        android:drawableRight="@drawable/ic_edit_white_24dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="John"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_Account_Setting_Heading"
-        android:drawableRight="@drawable/ic_edit_white_24dp" />
+        app:layout_constraintTop_toBottomOf="@+id/user_Account_Setting_Heading" />
 
     <EditText
         android:id="@+id/current_Password"
         android:layout_width="227dp"
         android:layout_height="61dp"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="276dp"
+        android:layout_marginBottom="292dp"
         android:backgroundTint="#FFFFFF"
         android:drawableEnd="@drawable/ic_edit_white_24dp"
         android:drawableRight="@drawable/ic_edit_white_24dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="123456"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_pasword_reset"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/new_pasword_reset"
+        android:layout_width="227dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="396dp"
+        android:backgroundTint="#FFFFFF"
+        android:drawableEnd="@drawable/ic_edit_white_24dp"
+        android:drawableRight="@drawable/ic_edit_white_24dp"
+        android:ems="10"
+        android:inputType="textPassword"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,5 +93,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/current_Password"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/display_Name_Heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="15dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:text="Display Name"
+        app:layout_constraintBottom_toTopOf="@+id/display_name"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/current_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:text="Current Password"
+        android:textColor="#FFFFFF"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/new_pasword_reset"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/new_password_reset_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:text="New Password"
+        android:textColor="#FFFFFF"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/current_Password"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

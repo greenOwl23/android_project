@@ -13,9 +13,9 @@ public class Transaction {
     private Date timestamp;
     private String type;
     private Category category;
-    private  int amount;
+    private  double amount;
 
-    public Transaction (Date timestamp, String type, Category category, int amount){
+    public Transaction (Date timestamp, String type, Category category, double amount){
         this.timestamp = timestamp;
         this.type = type;
         this.category = category;

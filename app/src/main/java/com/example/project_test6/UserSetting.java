@@ -43,7 +43,7 @@ public class UserSetting extends AppCompatActivity {
         button_budget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserSetting.this, MainPage.class));
+                startActivity(new Intent(UserSetting.this, BudgetSetting.class));
             }
         });
 

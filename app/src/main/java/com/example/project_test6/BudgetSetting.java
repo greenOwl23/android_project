@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class User_Account_Setting extends AppCompatActivity {
+public class BudgetSetting extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user__account__setting);
-
-
+        setContentView(R.layout.activity_budget_setting);
     }
 }
