@@ -6,25 +6,51 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
-public class RegisterCont extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-    private Button button;
-    private TextView openBalance;
-    private TextView savingGoal;
+public class RegisterCont extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+    FirebaseUser user;
+    DatabaseReference dbRoot;
+    private Button btn_done;
+    private EditText openBalance;
+    private EditText budget;
+    private EditText savingGoal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_cont);
+        dbRoot = FirebaseDatabase.getInstance().getReference();
 
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        openBalance = findViewById(R.id.account_balance_setup);
+        budget = findViewById(R.id.budget_setup);
+        savingGoal = findViewById(R.id.saving_setup);
 
-        button= findViewById(R.id.finish_Button);
-        button.setOnClickListener(new View.OnClickListener() {
+        btn_done= findViewById(R.id.finish_Button);
+        btn_done.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Create new user
+                setUp();
                 startActivity(new Intent(RegisterCont.this, MainPage.class));
             }
         });
+    }
+    protected void setUp(){
+        double opBalance = Double.parseDouble(openBalance.getText().toString());
+        double opBuget = Double.parseDouble(budget.getText().toString());
+        double opSaving = Double.parseDouble(savingGoal.getText().toString());
+        String uid = user.getUid();
+        dbRoot.child("users").child(uid).child("balance").setValue(opBalance);
+        dbRoot.child("users").child(uid).child("daily_budget").setValue(opBuget);
+        dbRoot.child("users").child(uid).child("saving_goal").setValue(opSaving);
+
+
     }
 }
