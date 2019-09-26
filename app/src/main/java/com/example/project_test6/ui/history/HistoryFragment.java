@@ -36,7 +36,7 @@ public class HistoryFragment extends Fragment {
                 ViewModelProviders.of(this).get(HistoryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_history, container, false);
         transactions = new ArrayList<>();
-        Category Food = new Category("Food");
+        String Food = "Food";
         createTransaction(new Date(), "Income", Food, 50000);
         createTransaction(new Date(), "Expense", Food, 500);
         createTransaction(new Date(), "Income", Food, 5000);
@@ -78,7 +78,7 @@ public class HistoryFragment extends Fragment {
         return root;
     }
 
-    public void createTransaction(Date date, String type, Category category, int amount){
+    public void createTransaction(Date date, String type, String category, int amount){
         transactions.add(new Transaction(date,type,category,amount));
     }
 
