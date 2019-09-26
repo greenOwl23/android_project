@@ -25,6 +25,7 @@ local.properties
 .idea/modules.xml
 .idea/scopes/scope_settings.xml
 .idea/vcs.xml
+<<<<<<< HEAD
 .idea/codeStyles/
 .idea/gradle.xml
 .idea/runConfigurations.xml
@@ -32,6 +33,8 @@ local.properties
 .idea/caches/build_file_checksums.ser
 
 
+=======
+>>>>>>> 502ab1d3799a5e9322e55aea1a02346bda5255a2
 *.iml
 
 # OS-specific files

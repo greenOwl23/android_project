@@ -58,6 +58,7 @@ public class User {
         return categories;
     }
 
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -69,6 +70,8 @@ public class User {
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
+//=======
+//>>>>>>> 502ab1d3799a5e9322e55aea1a02346bda5255a2
 
     public void setDaily_budget(int daily_budget) {
         this.daily_budget = daily_budget;
