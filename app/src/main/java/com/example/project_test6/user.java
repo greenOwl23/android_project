@@ -24,11 +24,6 @@ public class user {
         return categories;
     }
 
-//    public user(String username, String password){
-//        this.username = username;
-//        this.password = password;
-//
-//    }
 
     public user(int daily_budget, int saving_goal, int lvl, int balance, Transaction transaction[]){
      this.daily_budget = daily_budget;
