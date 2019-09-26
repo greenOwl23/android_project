@@ -1,13 +1,11 @@
 package com.example.project_test6.ui.profile;
 
 //<<<<<<< HEAD
-import android.content.Context;
 //=======
 //>>>>>>> 3a72a548f0794335ccc99382c4c63b9eacaed02d
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
+        import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 //<<<<<<< HEAD
@@ -22,20 +20,16 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.project_test6.Login;
-import com.example.project_test6.R;
+        import com.example.project_test6.R;
 import com.example.project_test6.UserSetting;
-import com.example.project_test6.ach;
+import com.example.project_test6.Ach;
 import com.example.project_test6.achAdapter;
-import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.ArrayList;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
+        import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
 
-    private ArrayList<ach> aches;
+    private ArrayList<Ach> aches;
     private ProfileViewModel profileViewModel;
     private RecyclerView recyclerView;
     private achAdapter adapter;
@@ -78,7 +72,7 @@ public class ProfileFragment extends Fragment {
     public void createAch(String ach, String condition, int counter){
 
         //
-        aches.add(new ach(ach,condition,counter));
+        aches.add(new Ach(ach,condition,counter));
     }
 
 }
