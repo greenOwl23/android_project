@@ -47,7 +47,7 @@
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:hint="Budget per day"
-        android:inputType="text"
+        android:inputType="number"
         android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

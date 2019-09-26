@@ -1,5 +1,6 @@
 package com.example.project_test6.ui.history;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_test6.Category;
+import com.example.project_test6.MainPage;
 import com.example.project_test6.R;
 import com.example.project_test6.Transaction;
 import com.example.project_test6.TransactionAdapterHistory;
@@ -72,6 +74,7 @@ public class HistoryFragment extends Fragment {
         adapter.setOnItemClickListener(new TransactionAdapterHistory.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
             }
         });
 

@@ -39,3 +39,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
 }
+def assembleAllRelease = []
+
+tasks.all {
+    if (it.name.contains("assembleRelease")) {
+        assembleAllRelease.add(it)
+    }
+}
+
+tasks.register("assembleAllRelease") {
+    dependsOn assembleAllRelease
+}

@@ -56,32 +56,48 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         final String displayName = et_displayName.getText().toString();
         String email = et_email.getText().toString();
         String password = et_password.getText().toString();
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            user = mAuth.getCurrentUser();
+
+        if(!email.isEmpty() && !password.isEmpty() && !displayName.isEmpty()){
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "createUserWithEmail:success");
+                                user = mAuth.getCurrentUser();
 //                            Intent intent = new Intent(Register.this,Readable.class);
 //                            startActivity(intent);
-                            onSuccessLogin(displayName);
-                            Toast.makeText(context, "Success!",
-                                    Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(Register.this,RegisterCont.class);
-                            startActivity(intent);
+
+                                if(user != null){
+                                    onSuccessLogin(displayName);
+                                    Toast.makeText(context, "Success!",
+                                            Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(Register.this,RegisterCont.class);
+                                    startActivity(intent);
+                                }else {
+                                    Toast.makeText(context, "Failed!",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+
+
 
 //                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(context, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(context, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
 //                            updateUI(null);
+                            }
                         }
-                    }
-                });
+                    });
+        }else {
+            Toast.makeText(context, "Please fill in all the information!",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
     protected void onSuccessLogin(String name) {

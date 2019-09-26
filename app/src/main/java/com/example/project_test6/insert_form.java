@@ -95,7 +95,7 @@ public class insert_form extends Activity {
     public void addListenerOnButton() {
         typeList = (Spinner) findViewById(R.id.typeList);
         category = (Spinner) findViewById(R.id.category);
-        amount = (EditText) findViewById(R.id.editText2);
+        amount = (EditText) findViewById(R.id.amount);
         btn_Add = (Button) findViewById(R.id.btnAdd);
         user = mAuth.getCurrentUser();
         if(user != null){
@@ -105,15 +105,21 @@ public class insert_form extends Activity {
                 public void onClick(View v) {
                     String ip_type = typeList.getSelectedItem().toString();
                     String ip_category = category.getSelectedItem().toString();
-                    int ip_amount = Integer.parseInt(amount.getText().toString());
-                    String uid = user.getUid();
+                    String str_amount = amount.getText().toString();
 
-//                      public Transaction (Date timestamp, String type, Category category, int amount){
-                    Transaction newTransaction = new Transaction(ip_type,ip_category,ip_amount);
-                    dbRoot.child("users").child(uid).child("Transactions").push().setValue(newTransaction);
-                    Toast.makeText(context, "Added!",
-                            Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(insert_form.this, MainPage.class));
+                    if(!str_amount.isEmpty()){
+                        String uid = user.getUid();
+                        int ip_amount = Integer.parseInt(amount.getText().toString());
+                        Transaction newTransaction = new Transaction(ip_type,ip_category,ip_amount);
+                        dbRoot.child("users").child(uid).child("Transactions").push().setValue(newTransaction);
+                        Toast.makeText(context, "Added!",
+                                Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(insert_form.this, MainPage.class));
+                    }else {
+                        Toast.makeText(context, "Please add the amount!",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
 
                 }
 

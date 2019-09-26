@@ -16,8 +16,9 @@ import java.util.Date;
 public class Transaction {
     private Date timestamp;
     private String type;
+//<<<<<<< HEAD
     private String category;
-    private  int amount;
+    private  double amount;
     private Timestamp time;
 
     public Transaction(){}
@@ -31,7 +32,13 @@ public class Transaction {
     }
 
     ///TEMPT*********************************************
-    public Transaction (Date timestamp,String type, String category, int amount){
+//    public Transaction (Date timestamp,String type, String category, int amount){
+//=======
+//    private String category;
+//    private  double amount;
+
+    public Transaction (Date timestamp, String type, String category, double amount){
+//>>>>>>> remotes/origin/ui_test
         this.timestamp = timestamp;
         this.type = type;
         this.category = category;

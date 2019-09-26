@@ -2,12 +2,14 @@ package com.example.project_test6;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,6 +24,7 @@ public class RegisterCont extends AppCompatActivity {
     private EditText openBalance;
     private EditText budget;
     private EditText savingGoal;
+    Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,18 +41,30 @@ public class RegisterCont extends AppCompatActivity {
         btn_done.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 setUp();
-                startActivity(new Intent(RegisterCont.this, MainPage.class));
+
             }
         });
     }
     protected void setUp(){
-        double opBalance = Double.parseDouble(openBalance.getText().toString());
-        double opBuget = Double.parseDouble(budget.getText().toString());
-        double opSaving = Double.parseDouble(savingGoal.getText().toString());
-        String uid = user.getUid();
-        dbRoot.child("users").child(uid).child("balance").setValue(opBalance);
-        dbRoot.child("users").child(uid).child("daily_budget").setValue(opBuget);
-        dbRoot.child("users").child(uid).child("saving_goal").setValue(opSaving);
+
+        String str_Balance = openBalance.getText().toString();
+        String str_Buget = budget.getText().toString();
+        String str_savingGoal = savingGoal.getText().toString();
+        if(!str_Balance.isEmpty() && !str_Buget.isEmpty() && !str_savingGoal.isEmpty()){
+            double opBalance = Double.parseDouble(openBalance.getText().toString());
+            double opBuget = Double.parseDouble(budget.getText().toString());
+            double opSaving = Double.parseDouble(savingGoal.getText().toString());
+            String uid = user.getUid();
+            dbRoot.child("users").child(uid).child("balance").setValue(opBalance);
+            dbRoot.child("users").child(uid).child("daily_budget").setValue(opBuget);
+            dbRoot.child("users").child(uid).child("saving_goal").setValue(opSaving);
+            startActivity(new Intent(RegisterCont.this, MainPage.class));
+        }else{
+            Toast.makeText(context, "Please fill in all the information!",
+                    Toast.LENGTH_SHORT).show();
+
+        }
+
 
 
     }

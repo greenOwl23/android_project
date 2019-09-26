@@ -78,32 +78,21 @@
     </FrameLayout>
 
     <FrameLayout
-        android:layout_width="411dp"
-        android:layout_height="560dp"
+        android:layout_width="406dp"
+        android:layout_height="562dp"
+        android:layout_margin="4dp"
+        android:layout_marginTop="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="4dp"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/ach_sec"
-            android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:layout_marginLeft="4dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:background="@color/colorPrimary"
-            android:layout_height="39dp"
-            android:text="Achievements" />
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
             android:layout_marginLeft="4dp"
+            android:layout_marginTop="44dp"
             android:background="@color/colorPrimaryDark">
 
             <TextView
@@ -119,7 +108,7 @@
                 android:id="@+id/condition_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="31dp"
-                android:layout_marginLeft="140dp"
+                android:layout_marginLeft="170dp"
                 android:layout_marginTop="4dp"
                 android:text="Condition"
                 android:textColor="#FFFFFF" />
@@ -134,13 +123,25 @@
                 android:textColor="#FFFFFF" />
         </FrameLayout>
 
+        <TextView
+            android:id="@+id/ach_sec"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_marginLeft="4dp"
+            android:background="@color/colorPrimary"
+            android:text="Achievements"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ach"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginTop="90dp" />
+            android:layout_marginTop="90dp"
+            android:layout_marginRight="4dp" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
