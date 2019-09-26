@@ -23,9 +23,9 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 
-    <fragment
-        android:id="@+id/navigation_setting"
-        android:name="com.example.project_test6.ui.profile.settingFragment"
-        android:label="@string/title_setting"
-        tools:layout="@layout/fragment_setting" />
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_setting"-->
+<!--        android:name="com.example.project_test6.ui.profile.settingFragment"-->
+<!--        android:label="@string/title_setting"-->
+<!--        tools:layout="@layout/fragment_setting" />-->
 </navigation>
