@@ -19,7 +19,6 @@ public class Transaction {
 //<<<<<<< HEAD
     private String category;
     private  double amount;
-    private Timestamp time;
 
     public Transaction(){}
 
@@ -28,7 +27,7 @@ public class Transaction {
         this.type = type;
         this.category = category;
         this.amount = amount;
-//        this.time = new Timestamp();
+
     }
 
     ///TEMPT*********************************************
@@ -37,13 +36,13 @@ public class Transaction {
 //    private String category;
 //    private  double amount;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public Transaction (Date timestamp, String type, String category, double amount){
 //>>>>>>> remotes/origin/ui_test
         this.timestamp = timestamp;
         this.type = type;
         this.category = category;
         this.amount = amount;
-//        this.time = new Timestamp();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
