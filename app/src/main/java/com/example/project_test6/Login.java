@@ -25,8 +25,8 @@ public class Login extends AppCompatActivity {
     private EditText new_username;
     private EditText new_password;
     private Button button;
-    private TextView email;
-    private TextView password;
+    private EditText email;
+    private EditText password;
     private TextView register;
     private Context context;
     String TAG = "Login";
@@ -69,23 +69,32 @@ public class Login extends AppCompatActivity {
     private void signIn(){
         String email = new_username.getText().toString();
         String password = new_password.getText().toString();
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
+
+        if(!email.isEmpty() && !password.isEmpty() ){
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithEmail:success");
 
 //                            user = mAuth.getCurrentUser();
-                            startActivity(new Intent(Login.this, MainPage.class));
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-//                            Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(Login.this, MainPage.class));
+                            } else {
+                                // If sign in fails, display a message to the user.
+//                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(getApplicationContext(), "Wrong username or password", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+        }else {
+            Toast.makeText(getApplicationContext(), "Please fill in the username and passsword.",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+
+
     }
 
 

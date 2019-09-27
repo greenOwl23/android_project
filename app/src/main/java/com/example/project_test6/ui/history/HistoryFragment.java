@@ -1,5 +1,6 @@
 package com.example.project_test6.ui.history;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_test6.Category;
+import com.example.project_test6.MainPage;
 import com.example.project_test6.R;
 import com.example.project_test6.Transaction;
 import com.example.project_test6.TransactionAdapterHistory;
@@ -36,7 +38,7 @@ public class HistoryFragment extends Fragment {
                 ViewModelProviders.of(this).get(HistoryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_history, container, false);
         transactions = new ArrayList<>();
-        Category Food = new Category("Food");
+        String Food = "Food";
         createTransaction(new Date(), "Income", Food, 50000);
         createTransaction(new Date(), "Expense", Food, 500);
         createTransaction(new Date(), "Income", Food, 5000);
@@ -72,13 +74,14 @@ public class HistoryFragment extends Fragment {
         adapter.setOnItemClickListener(new TransactionAdapterHistory.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
             }
         });
 
         return root;
     }
 
-    public void createTransaction(Date date, String type, Category category, int amount){
+    public void createTransaction(Date date, String type, String category, int amount){
         transactions.add(new Transaction(date,type,category,amount));
     }
 

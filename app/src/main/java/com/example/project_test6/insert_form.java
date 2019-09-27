@@ -11,31 +11,45 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project_test6.ui.history.HistoryFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class insert_form extends Activity {
-
+    private FirebaseAuth mAuth;
+    FirebaseUser user;
+    DatabaseReference dbRoot;
     private Spinner typeList,category;
-    private Button btnAdd;
-    private TextView amount;
+    private Button btn_Add;
+    private EditText amount;
+    Context context = this;
 
 
-    Category Food = new Category("Food");
-    Category Car = new Category("Car");
-    Category Health = new Category("Health");
+    String Food = "Food";
+    String Car = "Car";
+    String Health = "Health";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_form);
+
+        dbRoot = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -67,9 +81,9 @@ public class insert_form extends Activity {
 
         category = (Spinner) findViewById(R.id.category);
         List<String> list = new ArrayList<String>();
-        list.add(Food.getCategory());
-        list.add(Car.getCategory());
-        list.add(Health.getCategory());
+        list.add(Food);
+        list.add(Car);
+        list.add(Health );
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -81,16 +95,36 @@ public class insert_form extends Activity {
     public void addListenerOnButton() {
         typeList = (Spinner) findViewById(R.id.typeList);
         category = (Spinner) findViewById(R.id.category);
-        amount = (TextView) findViewById(R.id.amount);
-        btnAdd = (Button) findViewById(R.id.btnAdd);
+        amount = (EditText) findViewById(R.id.amount);
+        btn_Add = (Button) findViewById(R.id.btnAdd);
+        user = mAuth.getCurrentUser();
+        if(user != null){
+            btn_Add.setOnClickListener(new View.OnClickListener() {
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String ip_type = typeList.getSelectedItem().toString();
+                    String ip_category = category.getSelectedItem().toString();
+                    String str_amount = amount.getText().toString();
 
-            @Override
-            public void onClick(View v) {
+                    if(!str_amount.isEmpty()){
+                        String uid = user.getUid();
+                        int ip_amount = Integer.parseInt(amount.getText().toString());
+                        Transaction newTransaction = new Transaction(ip_type,ip_category,ip_amount);
+                        dbRoot.child("users").child(uid).child("Transactions").push().setValue(newTransaction);
+                        Toast.makeText(context, "Added!",
+                                Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(insert_form.this, MainPage.class));
+                    }else {
+                        Toast.makeText(context, "Please add the amount!",
+                                Toast.LENGTH_SHORT).show();
+                    }
 
-            }
 
-        });
+                }
+
+            });
+        }
+
     }
 }

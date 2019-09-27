@@ -47,15 +47,14 @@ public class HomeFragment extends Fragment {
             }
         });
         transactions = new ArrayList<>();
-        Category Food = new Category("Food");
+        String Food = "Food";
         createTransaction(new Date(),"Income",Food,50000);
         createTransaction(new Date(),"Expense",Food,500);
         createTransaction(new Date(),"Income",Food,5000);
         createTransaction(new Date(),"Expense",Food,500);
         createTransaction(new Date(),"Expense",Food,500);
         createTransaction(new Date(),"Expense",Food,500);
-        createTransaction(new Date(),"Expense",Food,500);
-        if (transactions.size()>6){
+        if (transactions.size()>5){
             transactions.remove(0);
         }
 
@@ -68,7 +67,7 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
-    public void createTransaction(Date date, String type, Category category, int amount){
+    public void createTransaction(Date date, String type, String category, int amount){
         transactions.add(new Transaction(date,type,category,amount));
     }
 
