@@ -27,15 +27,15 @@ public class UserSetting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_setting);
 
-//<<<<<<< HEAD
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-
-        getWindow().setLayout((int) (width * 0.8), (int) (height * 0.5));
-//=======
+////<<<<<<< HEAD
+//        DisplayMetrics dm = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(dm);
+//
+//        int width = dm.widthPixels;
+//        int height = dm.heightPixels;
+//
+//        getWindow().setLayout((int) (width * 0.8), (int) (height * 0.5));
+////=======
         button_user = findViewById(R.id.user_Account_Setting);
         button_user.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

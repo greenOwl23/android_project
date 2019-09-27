@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -45,9 +46,12 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private TransactionAdapterHome adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private TextView acc_balance;
+    private TextView bud_left;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference dRef;
+    DatabaseReference userRef;
     FirebaseUser user;
     String uid;
 
@@ -68,11 +72,16 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+
+        acc_balance = root.findViewById(R.id.currentBalance);
+        bud_left = root.findViewById(R.id.budget_left_amount);
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         dRef = firebaseDatabase.getReference().child("users").child(uid).child("Transactions");
+        userRef = firebaseDatabase.getReference().child("users").child(uid);
 
         transactions = new ArrayList<>();
 
@@ -93,6 +102,7 @@ public class HomeFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new TransactionAdapterHome(transactions);
+
 
         dRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -133,6 +143,29 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
+        // Read from the database
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Map map = (Map)dataSnapshot.getValue();
+//                String value = dataSnapshot.getValue(String.class);
+                String balance = String.valueOf(map.get("balance"));
+                String daily_budget = String.valueOf(map.get("daily_budget"));
+//                Log.e(TAG, "Value is: " + value);
+                acc_balance.setText(balance);
+                bud_left.setText(daily_budget);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
 
         return root;
     }
