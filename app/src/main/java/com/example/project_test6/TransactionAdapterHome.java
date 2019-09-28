@@ -18,6 +18,7 @@ public class TransactionAdapterHome extends RecyclerView.Adapter <TransactionAda
     private ArrayList<Transaction> example;
     private TransactionAdapterHistory.onItemClickListener listener;
 
+
     public interface onItemClickListener{
         void onItemClick(int position);
     }

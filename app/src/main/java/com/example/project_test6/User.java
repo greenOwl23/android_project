@@ -2,6 +2,8 @@ package com.example.project_test6;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.ArrayList;
+
 @IgnoreExtraProperties
 public class User {
 //    public String username;
@@ -13,6 +15,7 @@ public class User {
     public int lvl;
     public Transaction[] transaction;
     public String[] categories;
+    public Saving[] savings;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -30,8 +33,16 @@ public class User {
         return email;
     }
 
+    public void setSavings(Saving[] savings) {
+        this.savings = savings;
+    }
+
     public double getBalance() {
         return balance;
+    }
+
+    public Saving[] getSavings() {
+        return savings;
     }
 
     public String getDisplayName() {
