@@ -14,15 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class TransactionAdapterHome extends RecyclerView.Adapter <TransactionAdapterHistory.ViewHolder>{
+public class TransactionAdapterHome extends RecyclerView.Adapter <TransactionAdapterHome.ViewHolder>{
     private ArrayList<Transaction> example;
-    private TransactionAdapterHistory.onItemClickListener listener;
-
+    private TransactionAdapterHome.onItemClickListener listener;
 
     public interface onItemClickListener{
         void onItemClick(int position);
+        void onDeleteClick(int position);
     }
-    public void setOnItemClickListener(TransactionAdapterHistory.onItemClickListener listener){
+    public void setOnItemClickListener(TransactionAdapterHome.onItemClickListener listener){
         this.listener = listener;
     }
 
@@ -33,7 +33,7 @@ public class TransactionAdapterHome extends RecyclerView.Adapter <TransactionAda
         public TextView amount;
         public CardView card;
 
-        public ViewHolder(@NonNull View itemView, final TransactionAdapterHistory.onItemClickListener listener) {
+        public ViewHolder(@NonNull View itemView, final TransactionAdapterHome.onItemClickListener listener) {
             super(itemView);
             type = itemView.findViewById(R.id.type);
             category = itemView.findViewById(R.id.category);
@@ -59,14 +59,14 @@ public class TransactionAdapterHome extends RecyclerView.Adapter <TransactionAda
     }
 
     @NonNull
-    public TransactionAdapterHistory.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TransactionAdapterHome.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.template2,parent,false);
-        TransactionAdapterHistory.ViewHolder vh = new TransactionAdapterHistory.ViewHolder(v,listener);
+        TransactionAdapterHome.ViewHolder vh = new TransactionAdapterHome.ViewHolder(v,listener);
         return vh;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void onBindViewHolder(@NonNull TransactionAdapterHistory.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Transaction current_transaction = this.example.get(position);
         holder.type.setText(current_transaction.getType());
         holder.category.setText(current_transaction.getCategory());

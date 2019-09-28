@@ -39,7 +39,6 @@ public class insert_form extends Activity {
     private EditText amount;
     Context context = this;
 
-
     String Food = "Food";
     String Car = "Car";
     String Health = "Health";
@@ -50,14 +49,6 @@ public class insert_form extends Activity {
 
         dbRoot = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-
-        getWindow().setLayout((int) (width * 0.8), (int) (height * 0.5));
 
         addItemsOnSpinner();
         addItemsOnSpinner2();
@@ -77,17 +68,15 @@ public class insert_form extends Activity {
     }
 
     public void addItemsOnSpinner2(){
-
-
-        category = (Spinner) findViewById(R.id.category);
-        List<String> list = new ArrayList<String>();
-        list.add(Food);
-        list.add(Car);
-        list.add(Health );
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        category.setAdapter(dataAdapter);
+            category = (Spinner) findViewById(R.id.category);
+            List<String> list = new ArrayList<String>();
+            list.add(Food);
+            list.add(Car);
+            list.add(Health);
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_spinner_item, list);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            category.setAdapter(dataAdapter);
     }
 
 

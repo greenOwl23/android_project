@@ -56,33 +56,12 @@ public class HistoryFragment extends Fragment {
                 ViewModelProviders.of(this).get(HistoryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_history, container, false);
         transactions = new ArrayList<>();
-//        String Food = "Food";
-//        createTransaction(new Date(), "Income", Food, 50000);
-//        createTransaction(new Date(), "Expense", Food, 500);
-//        createTransaction(new Date(), "Income", Food, 5000);
-//        createTransaction(new Date(), "Expense", Food, 500);
-//        createTransaction(new Date(), "Income", Food, 50000);
-//        createTransaction(new Date(), "Expense", Food, 500);
-//        createTransaction(new Date(), "Income", Food, 5000);
-//        int year = 2019;
-//        int month = 9;
-//        int day = 24;
-//        String date = year + "/" + month + "/" + day;
-//        java.util.Date utilDate = null;
-//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-//        Date Date_ = null;
-//        try {
-//            Date_ = formatter.parse(date);
-//        } catch (ParseException e) {
-//
-//        }
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
         firebaseDatabase = FirebaseDatabase.getInstance();
         dRef = firebaseDatabase.getReference().child("users").child(uid).child("Transactions");
         userRef = firebaseDatabase.getReference().child("users").child(uid);
-
 
         dRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -109,9 +88,6 @@ public class HistoryFragment extends Fragment {
                         e.printStackTrace();
                     }
                     createTransaction(date,type,cate, am);
-                    if (transactions.size()>5){
-                        transactions.remove(0);
-                    }
 
                 }
 
@@ -125,17 +101,6 @@ public class HistoryFragment extends Fragment {
             }
         });
 
-
-
-
-
-
-//        createTransaction(new Date(String.valueOf(Date_)), "Expense", Food, 500);
-//        createTransaction(new Date(), "Income", Food, 50000);
-//        createTransaction(new Date(), "Expense", Food, 500);
-//        createTransaction(new Date(), "Income", Food, 5000);
-//        createTransaction(new Date(), "Expense", Food, 500);
-
         recyclerView = (RecyclerView) root.findViewById(R.id.history_list);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -148,9 +113,21 @@ public class HistoryFragment extends Fragment {
             public void onItemClick(int position) {
 
             }
+
+            @Override
+            public void onDeleteClick(int position) {
+                removeItem(position);
+            }
         });
 
         return root;
+    }
+    public void removeItem(int position){
+        transactions.remove(position);
+//        String uid = user.getUid();
+//        dRef.child("users").child(uid).child("Transactions").setValue(transactions);
+        adapter.notifyItemRemoved(position);
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

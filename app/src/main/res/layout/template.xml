@@ -60,6 +60,13 @@
                 android:text="place holder 4"
                 android:textSize="18dp" />
 
+            <ImageView
+                android:id="@+id/delete_Button"
+                android:layout_marginLeft="360dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_delete_black_24dp" />
+
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>

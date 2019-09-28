@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class TransactionAdapterHistory extends RecyclerView.Adapter <Transaction
 
     public interface onItemClickListener{
         void onItemClick(int position);
+        void onDeleteClick(int position);
     }
     public void setOnItemClickListener(onItemClickListener listener){
         this.listener = listener;
@@ -34,6 +36,7 @@ public class TransactionAdapterHistory extends RecyclerView.Adapter <Transaction
         public TextView category;
         public TextView amount;
         public CardView card;
+        public ImageView delete_Button;
 
         public ViewHolder(@NonNull View itemView, final onItemClickListener listener) {
             super(itemView);
@@ -42,6 +45,7 @@ public class TransactionAdapterHistory extends RecyclerView.Adapter <Transaction
             category = itemView.findViewById(R.id.category);
             amount = itemView.findViewById(R.id.amount);
             card = itemView.findViewById(R.id.card1);
+            delete_Button = itemView.findViewById(R.id.delete_Button);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -53,6 +57,17 @@ public class TransactionAdapterHistory extends RecyclerView.Adapter <Transaction
                         }
                     }
 
+                }
+            });
+            delete_Button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null){
+                        int postion = getAdapterPosition();
+                        if (postion != RecyclerView.NO_POSITION){
+                            listener.onDeleteClick(postion);
+                        }
+                    }
                 }
             });
         }

@@ -85,17 +85,6 @@ public class HomeFragment extends Fragment {
 
         transactions = new ArrayList<>();
 
-//        transactions = new ArrayList<>();
-//        String Food = "Food";
-//        createTransaction(new Date(),"Income",Food,50000);
-//        createTransaction(new Date(),"Expense",Food,500);
-//        createTransaction(new Date(),"Income",Food,5000);
-//        createTransaction(new Date(),"Expense",Food,500);
-//        createTransaction(new Date(),"Expense",Food,500);
-//        createTransaction(new Date(),"Expense",Food,500);
-//        if (transactions.size()>5){
-//            transactions.remove(0);
-//        }
 
         recyclerView = (RecyclerView) root.findViewById(R.id.recent_list);
         recyclerView.setHasFixedSize(true);
