@@ -112,7 +112,7 @@ public class ProfileFragment extends Fragment {
                 displayName.setText(name);
                 displayBalance.setText("Account Balance : " +balance);
                 displayLvl.setText("Level : "+lvl);
-                displaySaving.setText("Placeholder Saving");
+                displaySaving.setText("Saving : ");
 
 
             }
