@@ -53,11 +53,17 @@ public class RegisterCont extends AppCompatActivity {
         if(!str_Balance.isEmpty() && !str_Buget.isEmpty() && !str_savingGoal.isEmpty()){
             double opBalance = Double.parseDouble(openBalance.getText().toString());
             double opBuget = Double.parseDouble(budget.getText().toString());
-            double opSaving = Double.parseDouble(savingGoal.getText().toString());
+            double opSavingGoal = Double.parseDouble(savingGoal.getText().toString());
+            double opDecSpen = opBuget-opSavingGoal;
+            double opDecSaving = opSavingGoal;
             String uid = user.getUid();
+
+
             dbRoot.child("users").child(uid).child("balance").setValue(opBalance);
             dbRoot.child("users").child(uid).child("daily_budget").setValue(opBuget);
-            dbRoot.child("users").child(uid).child("saving_goal").setValue(opSaving);
+            dbRoot.child("users").child(uid).child("saving_goal").setValue(opSavingGoal);
+            dbRoot.child("users").child(uid).child("dedic_to_saving").setValue(opDecSaving);
+            dbRoot.child("users").child(uid).child("daily_budget_remain").setValue(opDecSpen);
             startActivity(new Intent(RegisterCont.this, MainPage.class));
         }else{
             Toast.makeText(context, "Please fill in all the information!",

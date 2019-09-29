@@ -6,19 +6,23 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="InsertForm" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d72a4c2d-677d-4870-b7ef-94c77403555a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Calculation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/insert_form.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/insert_form.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/ui/home/HomeFragment.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,86 +42,136 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Transaction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/insert_form.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2699">
-              <caret line="202" column="33" selection-start-line="202" selection-start-column="33" selection-end-line="202" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="89" column="32" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Register.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="63" column="51" lean-forward="true" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/template.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1139">
-              <caret line="67" column="52" lean-forward="true" selection-start-line="67" selection-start-column="52" selection-end-line="67" selection-end-column="52" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="1003">
-              <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Calculation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1199">
-              <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
-              <folding>
-                <element signature="e#834#842#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5503747">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/ui/home/HomeFragment.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="211">
+                  <caret line="146" column="85" selection-start-line="146" selection-start-column="39" selection-end-line="146" selection-end-column="85" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/insert_form.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="183">
+                  <caret line="193" column="22" lean-forward="true" selection-start-line="193" selection-start-column="22" selection-end-line="193" selection-end-column="22" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Register.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="375">
+                  <caret line="109" column="35" lean-forward="true" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Login.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1071">
+                  <caret line="80" selection-start-line="80" selection-end-line="80" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/template.xml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="272">
+                  <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+                </state>
+              </provider>
+              <provider editor-type-id="android-designer2" />
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/insert_form.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1037">
+                  <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/User.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="763">
+                  <caret line="111" column="26" selection-start-line="111" selection-start-column="26" selection-end-line="111" selection-end-column="26" />
+                  <folding>
+                    <element signature="e#1008#1009#0" expanded="true" />
+                    <element signature="e#1043#1044#0" expanded="true" />
+                    <element signature="e#1075#1076#0" expanded="true" />
+                    <element signature="e#1103#1104#0" expanded="true" />
+                    <element signature="e#1137#1138#0" expanded="true" />
+                    <element signature="e#1167#1168#0" expanded="true" />
+                    <element signature="e#1205#1206#0" expanded="true" />
+                    <element signature="e#1239#1240#0" expanded="true" />
+                    <element signature="e#1274#1275#0" expanded="true" />
+                    <element signature="e#1308#1309#0" expanded="true" />
+                    <element signature="e#1335#1336#0" expanded="true" />
+                    <element signature="e#1361#1362#0" expanded="true" />
+                    <element signature="e#1406#1407#0" expanded="true" />
+                    <element signature="e#1440#1441#0" expanded="true" />
+                    <element signature="e#1479#1480#0" expanded="true" />
+                    <element signature="e#1512#1513#0" expanded="true" />
+                    <element signature="e#1558#1559#0" expanded="true" />
+                    <element signature="e#1600#1601#0" expanded="true" />
+                    <element signature="e#1633#1634#0" expanded="true" />
+                    <element signature="e#1662#1663#0" expanded="true" />
+                    <element signature="e#1701#1702#0" expanded="true" />
+                    <element signature="e#1736#1737#0" expanded="true" />
+                    <element signature="e#1792#1793#0" expanded="true" />
+                    <element signature="e#1840#1841#0" expanded="true" />
+                    <element signature="e#1882#1883#0" expanded="true" />
+                    <element signature="e#1916#1917#0" expanded="true" />
+                    <element signature="e#1962#1963#0" expanded="true" />
+                    <element signature="e#2000#2001#0" expanded="true" />
+                    <element signature="e#2054#2055#0" expanded="true" />
+                    <element signature="e#2100#2101#0" expanded="true" />
+                    <element signature="e#2151#2152#0" expanded="true" />
+                    <element signature="e#2197#2198#0" expanded="true" />
+                    <element signature="e#2232#2233#0" expanded="true" />
+                    <element signature="e#2262#2263#0" expanded="true" />
+                    <element signature="e#2323#2324#0" expanded="true" />
+                    <element signature="e#2369#2370#0" expanded="true" />
+                    <element signature="e#2423#2424#0" expanded="true" />
+                    <element signature="e#2467#2468#0" expanded="true" />
+                    <element signature="e#2643#2644#0" expanded="true" />
+                    <element signature="e#2679#2680#0" expanded="true" />
+                    <element signature="e#2735#2736#0" expanded="true" />
+                    <element signature="e#2783#2784#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -130,12 +184,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>padd</find>
-      <find>gra</find>
-      <find>saving</find>
-      <find>day</find>
-      <find>saving se</find>
-      <find>am</find>
       <find>saving_se</find>
       <find>amount</find>
       <find>amountm</find>
@@ -155,8 +203,17 @@
       <find>jo</find>
       <find>sav</find>
       <find>sa</find>
-      <find>user</find>
       <find>dbRoot</find>
+      <find>mAu</find>
+      <find>mAuth</find>
+      <find>saving</find>
+      <find>savings</find>
+      <find>daily</find>
+      <find>user</find>
+      <find>TAG</find>
+      <find>budget</find>
+      <find>daily_budget</find>
+      <find>buffer</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -220,15 +277,15 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Calculation.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Transaction.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/ui/home/HomeFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/insert_form.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/project_test6/User.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="547" />
-    <option name="y" value="172" />
+    <option name="x" value="546" />
+    <option name="y" value="171" />
     <option name="width" value="980" />
     <option name="height" value="1040" />
   </component>
@@ -237,8 +294,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -300,7 +356,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -549,7 +606,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569729400611</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="trying to implement the calculation.">
+      <created>1569735802734</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1569735802734</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView">
@@ -572,26 +636,27 @@
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Resources Explorer" order="6" weight="0.3295302" />
-      <window_info active="true" content_ui="combo" id="Project" order="7" visible="true" weight="0.19395973" />
+      <window_info content_ui="combo" id="Project" order="7" visible="true" weight="0.15033557" />
       <window_info id="Captures" order="8" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Logcat" order="0" weight="0.3286119" />
+      <window_info anchor="bottom" id="Logcat" order="0" weight="0.07790368" />
       <window_info anchor="bottom" id="TODO" order="1" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="2" weight="0.5141643" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.49932885" weight="0.3371105" />
       <window_info anchor="bottom" id="Version Control" order="4" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50067115" side_tool="true" weight="0.44334278" />
-      <window_info anchor="bottom" id="Build" order="6" sideWeight="0.49798658" weight="0.16855524" />
+      <window_info anchor="bottom" id="Build" order="6" sideWeight="0.49798658" weight="0.11473088" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.4986577" weight="0.43201134" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.4986577" visible="true" weight="0.28045326" />
       <window_info anchor="bottom" id="Find" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3286119" />
-      <window_info anchor="right" id="Assistant" weight="0.13422818" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Gradle" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="right" id="Preview" order="4" />
       <window_info anchor="right" id="Device File Explorer" order="5" side_tool="true" weight="0.3295302" />
+      <window_info anchor="right" id="Hierarchy" order="6" weight="0.3295302" />
+      <window_info anchor="right" id="Assistant" order="7" weight="0.14161074" />
     </layout>
     <layout-to-restore>
       <window_info id="Structure" order="0" side_tool="true" />
@@ -676,7 +741,8 @@
     <MESSAGE value="Finished all the main UI designs and updated" />
     <MESSAGE value="test committing" />
     <MESSAGE value="added delete feature on the history page." />
-    <option name="LAST_COMMIT_MESSAGE" value="added delete feature on the history page." />
+    <MESSAGE value="trying to implement the calculation." />
+    <option name="LAST_COMMIT_MESSAGE" value="trying to implement the calculation." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/ui/login/LoginFormState.java" />
@@ -741,14 +807,6 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
       <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_settings_white_24dp.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -849,13 +907,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="71" selection-start-line="71" selection-end-line="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml">
       <provider editor-type-id="nav-designer" />
       <provider selected="true" editor-type-id="text-editor" />
@@ -937,14 +988,6 @@
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/template.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="67" column="52" lean-forward="true" selection-start-line="67" selection-start-column="52" selection-end-line="67" selection-end-column="52" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/ui/history/HistoryFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -956,47 +999,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="63" column="51" lean-forward="true" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Register.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="89" column="32" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/calculations.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="43">
           <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/ui/home/HomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="51" column="33" lean-forward="true" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1007,19 +1013,132 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/insert_form.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Calculation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2699">
-          <caret line="202" column="33" selection-start-line="202" selection-start-column="33" selection-end-line="202" selection-end-column="33" />
+        <state relative-caret-position="553">
+          <caret line="57" column="38" lean-forward="true" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+          <folding>
+            <element signature="e#834#842#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Calculation.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1199">
-          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+        <state relative-caret-position="1071">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/template.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/insert_form.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="193" column="22" lean-forward="true" selection-start-line="193" selection-start-column="22" selection-end-line="193" selection-end-column="22" />
           <folding>
-            <element signature="e#834#842#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/Register.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="109" column="35" lean-forward="true" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="763">
+          <caret line="111" column="26" selection-start-line="111" selection-start-column="26" selection-end-line="111" selection-end-column="26" />
+          <folding>
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1043#1044#0" expanded="true" />
+            <element signature="e#1075#1076#0" expanded="true" />
+            <element signature="e#1103#1104#0" expanded="true" />
+            <element signature="e#1137#1138#0" expanded="true" />
+            <element signature="e#1167#1168#0" expanded="true" />
+            <element signature="e#1205#1206#0" expanded="true" />
+            <element signature="e#1239#1240#0" expanded="true" />
+            <element signature="e#1274#1275#0" expanded="true" />
+            <element signature="e#1308#1309#0" expanded="true" />
+            <element signature="e#1335#1336#0" expanded="true" />
+            <element signature="e#1361#1362#0" expanded="true" />
+            <element signature="e#1406#1407#0" expanded="true" />
+            <element signature="e#1440#1441#0" expanded="true" />
+            <element signature="e#1479#1480#0" expanded="true" />
+            <element signature="e#1512#1513#0" expanded="true" />
+            <element signature="e#1558#1559#0" expanded="true" />
+            <element signature="e#1600#1601#0" expanded="true" />
+            <element signature="e#1633#1634#0" expanded="true" />
+            <element signature="e#1662#1663#0" expanded="true" />
+            <element signature="e#1701#1702#0" expanded="true" />
+            <element signature="e#1736#1737#0" expanded="true" />
+            <element signature="e#1792#1793#0" expanded="true" />
+            <element signature="e#1840#1841#0" expanded="true" />
+            <element signature="e#1882#1883#0" expanded="true" />
+            <element signature="e#1916#1917#0" expanded="true" />
+            <element signature="e#1962#1963#0" expanded="true" />
+            <element signature="e#2000#2001#0" expanded="true" />
+            <element signature="e#2054#2055#0" expanded="true" />
+            <element signature="e#2100#2101#0" expanded="true" />
+            <element signature="e#2151#2152#0" expanded="true" />
+            <element signature="e#2197#2198#0" expanded="true" />
+            <element signature="e#2232#2233#0" expanded="true" />
+            <element signature="e#2262#2263#0" expanded="true" />
+            <element signature="e#2323#2324#0" expanded="true" />
+            <element signature="e#2369#2370#0" expanded="true" />
+            <element signature="e#2423#2424#0" expanded="true" />
+            <element signature="e#2467#2468#0" expanded="true" />
+            <element signature="e#2643#2644#0" expanded="true" />
+            <element signature="e#2679#2680#0" expanded="true" />
+            <element signature="e#2735#2736#0" expanded="true" />
+            <element signature="e#2783#2784#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/project_test6/ui/home/HomeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="146" column="85" selection-start-line="146" selection-start-column="39" selection-end-line="146" selection-end-column="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

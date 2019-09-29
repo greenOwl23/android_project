@@ -33,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
@@ -48,12 +49,14 @@ public class HomeFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private TextView acc_balance;
     private TextView bud_left;
+    private TextView total_saving;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference dRef;
     DatabaseReference userRef;
     FirebaseUser user;
     String uid;
+    Date currentTime;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -73,9 +76,10 @@ public class HomeFragment extends Fragment {
         });
 
 
-
+        currentTime = Calendar.getInstance().getTime();
         acc_balance = root.findViewById(R.id.currentBalance);
         bud_left = root.findViewById(R.id.budget_left_amount);
+        total_saving = root.findViewById(R.id.saving_Total_Amount);
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
 
@@ -84,7 +88,6 @@ public class HomeFragment extends Fragment {
         userRef = firebaseDatabase.getReference().child("users").child(uid);
 
         transactions = new ArrayList<>();
-
 
         recyclerView = (RecyclerView) root.findViewById(R.id.recent_list);
         recyclerView.setHasFixedSize(true);
@@ -142,10 +145,12 @@ public class HomeFragment extends Fragment {
                 Map map = (Map)dataSnapshot.getValue();
 //                String value = dataSnapshot.getValue(String.class);
                 String balance = String.valueOf(map.get("balance"));
-                String daily_budget = String.valueOf(map.get("daily_budget"));
+                String daily_budget = String.valueOf(map.get("daily_budget_remain"));
+                String totalSave = String.valueOf(map.get("total_saving")) ;
 //                Log.e(TAG, "Value is: " + value);
                 acc_balance.setText(balance);
                 bud_left.setText(daily_budget);
+                total_saving.setText(totalSave);
             }
 
             @Override
