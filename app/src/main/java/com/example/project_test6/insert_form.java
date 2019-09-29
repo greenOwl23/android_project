@@ -101,8 +101,9 @@ public class insert_form extends Activity {
                 Map map = (Map) dataSnapshot.getValue();
 //                String value = dataSnapshot.getValue(String.class);
                 accBalance = Double.parseDouble(String.valueOf(map.get("balance")));
-                fixed_dedic_spend = Double.parseDouble(String.valueOf(map.get("daily_budget")));
                 fixed_dedic_save = Double.parseDouble(String.valueOf(map.get("saving_goal")));
+                fixed_dedic_spend = Double.parseDouble(String.valueOf(map.get("daily_budget")));
+                fixed_dedic_spend-=fixed_dedic_save;
                 dedic_to_saving = Double.parseDouble(String.valueOf(map.get("saving_remain")));
                 current_saving = Double.parseDouble(String.valueOf(map.get("total_saving")));
                 buffer = Double.parseDouble(String.valueOf(map.get("buffer")));
