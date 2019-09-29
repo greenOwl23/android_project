@@ -81,6 +81,8 @@ public class Login extends AppCompatActivity {
 
 //                            user = mAuth.getCurrentUser();
                                 startActivity(new Intent(Login.this, MainPage.class));
+                                //Start Background Service is true
+
                             } else {
                                 // If sign in fails, display a message to the user.
 //                            Log.w(TAG, "signInWithEmail:failure", task.getException());

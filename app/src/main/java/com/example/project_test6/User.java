@@ -3,6 +3,7 @@ package com.example.project_test6;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @IgnoreExtraProperties
 public class User {
@@ -20,6 +21,7 @@ public class User {
     public double daily_budget_remain;
     public double buffer;
     public double total_saving;
+    public ArrayList<Saving> savingList;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -34,6 +36,14 @@ public class User {
         this.lvl = 0;
         this.buffer = 0;
         this.total_saving = 0;
+    }
+
+    public ArrayList<Saving> getSavingList() {
+        return savingList;
+    }
+
+    public void setSavingList(ArrayList<Saving> savingList) {
+        this.savingList = savingList;
     }
 
     public double getDaily_budget() {

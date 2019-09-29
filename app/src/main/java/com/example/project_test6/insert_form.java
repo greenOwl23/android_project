@@ -1,12 +1,14 @@
 package com.example.project_test6;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.Constraints;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -47,12 +49,14 @@ public class insert_form extends Activity {
     private EditText amount;
     Context context = this;
     String TAG = "InsertForm";
+    ArrayList<Saving> savingList = new ArrayList<Saving>();
 
 
     FirebaseUser user;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference dRef;
     DatabaseReference userRef;
+    DatabaseReference savingRef;
     String uid;
 
     String Food = "Food";
@@ -66,9 +70,7 @@ public class insert_form extends Activity {
     double buffer = 0;
     double current_saving = 0;
     double accBalance = 0;
-
     String localDisplayName;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,9 +82,42 @@ public class insert_form extends Activity {
         uid = user.getUid();
         dbRoot = FirebaseDatabase.getInstance().getReference();
         userRef = firebaseDatabase.getReference().child("users").child(uid);
+        savingRef = firebaseDatabase.getReference().child("users").child(uid).child("savings");
 
         // Read from the database
+        savingRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dsBitch: dataSnapshot.getChildren()){
+                    Map map = (Map)dsBitch.getValue();
+                    String str_amount = String.valueOf(map.get("amount"));
+                    String str_isSaved = String.valueOf(map.get("isSaved"));
+                    String str_timestamp = String.valueOf(map.get("timestamp"));
 
+                    Log.e(TAG, str_amount);
+                    Log.e(TAG, str_isSaved);
+                    Log.e(TAG, str_timestamp);
+
+                    Double amount = Double.parseDouble(str_amount);
+                    Boolean isSaved = Boolean.parseBoolean(str_isSaved);
+                    Date timestamp = null;
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
+                    try {
+                        timestamp = formatter.parse(str_timestamp);//catch exception
+                    } catch (ParseException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    savingList.add(new Saving(str_timestamp,amount,isSaved));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -177,11 +212,9 @@ public class insert_form extends Activity {
     }
 
     public void calTransac(String tranType, double trans) {
-
         //Read them data boi
         Log.e(TAG, String.valueOf(accBalance));
         if (tranType.equals("Expense")) {
-
             accBalance -= trans;
 
             if (dedic_to_spend <= 0) {

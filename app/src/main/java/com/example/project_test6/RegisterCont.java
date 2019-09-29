@@ -16,6 +16,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class RegisterCont extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseUser user;
@@ -25,6 +28,8 @@ public class RegisterCont extends AppCompatActivity {
     private EditText budget;
     private EditText savingGoal;
     Context context = this;
+    DatabaseReference savingRef;
+    FirebaseDatabase firebaseDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,8 @@ public class RegisterCont extends AppCompatActivity {
         dbRoot = FirebaseDatabase.getInstance().getReference();
 
         mAuth = FirebaseAuth.getInstance();
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
         user = mAuth.getCurrentUser();
         openBalance = findViewById(R.id.account_balance_setup);
         budget = findViewById(R.id.budget_setup);
@@ -58,12 +65,17 @@ public class RegisterCont extends AppCompatActivity {
             double opDecSaving = opSavingGoal;
             String uid = user.getUid();
 
+            savingRef = firebaseDatabase.getReference().child("users").child(uid).child("savings");
+
 
             dbRoot.child("users").child(uid).child("balance").setValue(opBalance);
             dbRoot.child("users").child(uid).child("daily_budget").setValue(opBuget);
             dbRoot.child("users").child(uid).child("saving_goal").setValue(opSavingGoal);
             dbRoot.child("users").child(uid).child("dedic_to_saving").setValue(opDecSaving);
             dbRoot.child("users").child(uid).child("daily_budget_remain").setValue(opDecSpen);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+            String currentDateandTime = sdf.format(new Date());
+            savingRef.push().setValue(new Saving(currentDateandTime,0,false));
             startActivity(new Intent(RegisterCont.this, MainPage.class));
         }else{
             Toast.makeText(context, "Please fill in all the information!",
