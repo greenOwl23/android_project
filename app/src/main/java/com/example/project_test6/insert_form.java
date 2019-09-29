@@ -147,8 +147,8 @@ public class insert_form extends Activity {
 
         typeList = (Spinner) findViewById(R.id.typeList);
         List<String> list = new ArrayList<String>();
-        list.add("Income");
         list.add("Expense");
+        list.add("Income");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
