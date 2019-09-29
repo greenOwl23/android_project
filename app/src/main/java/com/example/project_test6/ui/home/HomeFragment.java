@@ -50,10 +50,17 @@ public class HomeFragment extends Fragment {
     private TextView acc_balance;
     private TextView bud_left;
     private TextView total_saving;
+    private TextView saving_goal;
+    private TextView buffer;
+    private TextView avgDay;
+    private TextView avgMonth;
+    private TextView avgYear;
+    private TextView currentSaving;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference dRef;
     DatabaseReference userRef;
+
     FirebaseUser user;
     String uid;
     Date currentTime;
@@ -79,7 +86,12 @@ public class HomeFragment extends Fragment {
         currentTime = Calendar.getInstance().getTime();
         acc_balance = root.findViewById(R.id.currentBalance);
         bud_left = root.findViewById(R.id.budget_left_amount);
+        saving_goal = root.findViewById(R.id.saving_Goal_Amount);
         total_saving = root.findViewById(R.id.saving_Total_Amount);
+        buffer = root.findViewById(R.id.Buffer_Amount);
+        avgDay = root.findViewById(R.id.amount_day);
+        avgMonth = root.findViewById(R.id.amount_month);
+        avgYear = root.findViewById(R.id.amount_year);
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
 
@@ -120,7 +132,7 @@ public class HomeFragment extends Fragment {
                         e.printStackTrace();
                     }
                     createTransaction(date,type,cate, am);
-                    if (transactions.size()>5){
+                    if (transactions.size()>4){
                         transactions.remove(0);
                     }
 
@@ -146,11 +158,23 @@ public class HomeFragment extends Fragment {
 //                String value = dataSnapshot.getValue(String.class);
                 String balance = String.valueOf(map.get("balance"));
                 String daily_budget = String.valueOf(map.get("daily_budget_remain"));
+                String saving_remain = String.valueOf(map.get("saving_remain"));
                 String totalSave = String.valueOf(map.get("total_saving")) ;
+                String Buffer = String.valueOf(map.get("buffer"));
+                String Day_average = String.valueOf(map.get("avgSaving"));
 //                Log.e(TAG, "Value is: " + value);
                 acc_balance.setText(balance);
                 bud_left.setText(daily_budget);
                 total_saving.setText(totalSave);
+                saving_goal.setText(saving_remain);
+                buffer.setText(Buffer);
+                avgDay.setText("+"+Day_average);
+                double Day = Double.parseDouble(Day_average);
+                double Month = Day*30;
+                double Year = Day*365;
+                avgMonth.setText("+"+Month);
+                avgYear.setText("+"+Year);
+
             }
 
             @Override
