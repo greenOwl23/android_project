@@ -10,12 +10,13 @@ public class User {
     public String email;
     public double balance;
     public String displayName;
-    public int daily_budget;
+    public int daily_budget_fix;
     public int saving_goal;
     public int lvl;
     public Transaction[] transaction;
     public String[] categories;
     public Saving[] savings;
+    public double daily_budget_remain;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -24,7 +25,8 @@ public class User {
     public User(String displayName) {
         this.displayName = displayName;
         this.balance = 0;
-        this.daily_budget =0;
+        this.daily_budget_fix =0;
+        this.daily_budget_remain = 0;
         this.saving_goal =0;
         this.lvl=0;
     }
@@ -50,7 +52,7 @@ public class User {
     }
 
     public int getDaily_budget() {
-        return daily_budget;
+        return daily_budget_fix;
     }
 
     public int getSaving_goal() {
@@ -85,7 +87,7 @@ public class User {
 //>>>>>>> 502ab1d3799a5e9322e55aea1a02346bda5255a2
 
     public void setDaily_budget(int daily_budget) {
-        this.daily_budget = daily_budget;
+        this.daily_budget_remain = daily_budget;
     }
 
     public void setSaving_goal(int saving_goal) {
