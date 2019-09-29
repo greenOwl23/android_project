@@ -25,7 +25,7 @@
         <FrameLayout
             android:id="@+id/account_balance"
             android:layout_width="401dp"
-            android:layout_height="135dp"
+            android:layout_height="179dp"
             android:layout_margin="4dp">
 
             <TextView
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="80dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="130dp"
                 android:text="Total Saving:"
                 android:textColor="@color/colorGreenDark_income"
                 android:textSize="20dp" />
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="80dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="130dp"
                 android:text="0"
                 android:textColor="@color/colorGreenDark_income"
                 android:textSize="20dp" />
@@ -96,20 +96,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="80dp"
-                android:textSize="20dp"
                 android:layout_marginTop="70dp"
-                android:text="Saving Goal:"
-                android:textColor="@color/colorGreenDark_income" />
+                android:text="Left for Saving :"
+                android:textColor="@color/colorGreenDark_income"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/Buffer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="100dp"
+                android:text="Buffer:"
+                android:textColor="@color/colorGreenDark_income"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/Buffer_Amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="100dp"
+                android:text="0"
+                android:textColor="@color/colorGreenDark_income"
+                android:textSize="20dp" />
+
             <TextView
                 android:id="@+id/saving_Goal_Amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="80dp"
                 android:layout_gravity="center_horizontal"
-                android:textSize="20dp"
+                android:layout_marginLeft="80dp"
                 android:layout_marginTop="70dp"
                 android:text="0"
-                android:textColor="@color/colorGreenDark_income" />
+                android:textColor="@color/colorGreenDark_income"
+                android:textSize="20dp" />
 
         </FrameLayout>
 

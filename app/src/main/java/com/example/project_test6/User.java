@@ -11,15 +11,17 @@ public class User {
     public String email;
     public double balance;
     public String displayName;
-    public int saving_goal;
+    public double saving_goal;
+    public double saving_remain;
     public int lvl;
 
     public Transaction[] transaction;
     public String[] categories;
-    public Saving[] savings;
     public double daily_budget_remain;
     public double buffer;
     public double total_saving;
+    public double avgSaving;
+    public ArrayList<Double> savings;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -34,7 +36,35 @@ public class User {
         this.lvl = 0;
         this.buffer = 0;
         this.total_saving = 0;
-        this.savings;
+        this.savings = new ArrayList<Double>();
+        this.avgSaving = 0;
+        this.saving_remain = 0;
+    }
+
+    public void setSaving_goal(double saving_goal) {
+        this.saving_goal = saving_goal;
+    }
+
+    public double getSaving_remain() {
+        return saving_remain;
+    }
+
+    public void setSavings(ArrayList<Double> savings) {
+        this.savings = savings;
+    }
+
+    public ArrayList<Double> getSavings() {
+        return savings;
+    }
+
+    public void setAvgSaving(double avgSaving) {
+        this.avgSaving = avgSaving;
+    }
+
+
+
+    public double getAvgSaving() {
+        return avgSaving;
     }
 
     public double getDaily_budget() {
@@ -53,7 +83,7 @@ public class User {
         return displayName;
     }
 
-    public int getSaving_goal() {
+    public double getSaving_goal() {
         return saving_goal;
     }
 
@@ -97,9 +127,6 @@ public class User {
         this.displayName = displayName;
     }
 
-    public void setSaving_goal(int saving_goal) {
-        this.saving_goal = saving_goal;
-    }
 
     public void setLvl(int lvl) {
         this.lvl = lvl;

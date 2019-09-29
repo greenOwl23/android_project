@@ -1,12 +1,14 @@
 package com.example.project_test6;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.Constraints;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -38,6 +40,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 
 public class insert_form extends Activity {
     private FirebaseAuth mAuth;
@@ -52,6 +56,7 @@ public class insert_form extends Activity {
     FirebaseUser user;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference dRef;
+    DatabaseReference userSaveRef;
     DatabaseReference userRef;
     String uid;
 
@@ -59,17 +64,21 @@ public class insert_form extends Activity {
     String Car = "Car";
     String Health = "Health";
     User localUser;
-    double fixed_dedic_spend = 0;
-    double fixed_dedic_save = 0;
-    double dedic_to_spend = 0;
-    double dedic_to_saving = 0;
-    double buffer = 0;
-    double current_saving = 0;
-    double accBalance = 0;
+    double fixed_dedic_spend;
+    double fixed_dedic_save;
+    double dedic_to_spend;
+    double dedic_to_saving;
+    double buffer;
+    double current_saving;
+    double avgSaving;
+    double accBalance;
+    boolean isAllGood = true;
+
+    ArrayList<Double> savings = new ArrayList<Double>();
 
     String localDisplayName;
 
-
+    //TODO: make buffer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +89,7 @@ public class insert_form extends Activity {
         uid = user.getUid();
         dbRoot = FirebaseDatabase.getInstance().getReference();
         userRef = firebaseDatabase.getReference().child("users").child(uid);
+        userSaveRef = firebaseDatabase.getReference().child("users").child(uid).child("savings");
 
         // Read from the database
 
@@ -93,11 +103,10 @@ public class insert_form extends Activity {
                 accBalance = Double.parseDouble(String.valueOf(map.get("balance")));
                 fixed_dedic_spend = Double.parseDouble(String.valueOf(map.get("daily_budget")));
                 fixed_dedic_save = Double.parseDouble(String.valueOf(map.get("saving_goal")));
+                dedic_to_saving = Double.parseDouble(String.valueOf(map.get("saving_remain")));
                 current_saving = Double.parseDouble(String.valueOf(map.get("total_saving")));
                 buffer = Double.parseDouble(String.valueOf(map.get("buffer")));
-                accBalance = Double.parseDouble(String.valueOf(map.get("balance")));
                 dedic_to_spend = Double.parseDouble(String.valueOf(map.get("daily_budget_remain")));
-
             }
 
             @Override
@@ -106,6 +115,27 @@ public class insert_form extends Activity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+        userSaveRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dsBitch : dataSnapshot.getChildren()) {
+                    Map map = (Map) dsBitch.getValue();
+                    String amount = String.valueOf(map.get("amount"));
+
+                    Log.e(TAG, amount);
+
+                    Double am = Double.parseDouble(amount);
+                    savings.add(am);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
         addItemsOnSpinner();
         addItemsOnSpinner2();
         addListenerOnButton();
@@ -143,7 +173,10 @@ public class insert_form extends Activity {
         category = (Spinner) findViewById(R.id.category);
         amount = (EditText) findViewById(R.id.amount);
         btn_Add = (Button) findViewById(R.id.btnAdd);
-//        Log.e(TAG,localDisplayName);
+
+//        for(double saving : savings){
+//            Log.e(TAG,String.valueOf(saving));
+//        }
         if (user != null) {
             btn_Add.setOnClickListener(new View.OnClickListener() {
 
@@ -156,18 +189,23 @@ public class insert_form extends Activity {
                     if (!str_amount.isEmpty()) {
                         int ip_amount = Integer.parseInt(amount.getText().toString());
                         Transaction newTransaction = new Transaction(ip_type, ip_category, ip_amount);
-                        dbRoot.child("users").child(uid).child("Transactions").push().setValue(newTransaction);
-                        Toast.makeText(context, "Added!",
-                                Toast.LENGTH_SHORT).show();
-
                         calTransac(typeList.getSelectedItem().toString(), ip_amount);
+
+                        if(isAllGood){
+                            dbRoot.child("users").child(uid).child("Transactions").push().setValue(newTransaction);
+                            Toast.makeText(context, "Added!",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }
+                        savings.add(dedic_to_saving);
+                        calAverageSav();
 
                         startActivity(new Intent(insert_form.this, MainPage.class));
                     } else {
+
                         Toast.makeText(context, "Please add the amount!",
                                 Toast.LENGTH_SHORT).show();
                     }
-
 
                 }
 
@@ -177,52 +215,82 @@ public class insert_form extends Activity {
     }
 
     public void calTransac(String tranType, double trans) {
-
-        //Read them data boi
-        Log.e(TAG, String.valueOf(accBalance));
         if (tranType.equals("Expense")) {
 
-            accBalance -= trans;
-
-            if (dedic_to_spend <= 0) {
-//                System.out.print("You have used up the budget for the day. Your expense will now be subtracted to your dedicated saving amount. ");
-                dedic_to_saving -= (trans + Math.abs(dedic_to_spend));
+            if (dedic_to_spend >= trans) {
+                accBalance-=trans;
+                dedic_to_spend -= trans;
+            } else if ((dedic_to_spend + dedic_to_saving) >= trans) {
+                accBalance-=trans;
+                dedic_to_saving = (dedic_to_saving + dedic_to_spend) - trans;
                 dedic_to_spend = 0;
-            } else if (dedic_to_saving < 0) {
-//                System.out.print("You have used up the amount dedicated to saving. Your expense will now be subtracted from buffer.");
-
-                buffer -= (trans + Math.abs(dedic_to_saving));
+            } else if ((dedic_to_spend + dedic_to_saving + buffer) >= trans) {
+                accBalance-=trans;
+                buffer = (dedic_to_saving + dedic_to_spend + buffer) - trans;
+                dedic_to_spend = 0;
                 dedic_to_saving = 0;
+            } else if ((dedic_to_spend + dedic_to_saving + buffer + accBalance) >= trans) {
+                accBalance = (accBalance+dedic_to_spend + dedic_to_saving + buffer) - trans;
+                dedic_to_spend = 0;
+                dedic_to_saving = 0;
+                buffer = 0;
             } else {
-                if (dedic_to_spend <= trans) {
-                    dedic_to_saving -= (trans + Math.abs(dedic_to_spend));
-                    dedic_to_spend = 0;
-                } else {
-                    dedic_to_spend -= trans;
-                }
-
+               isAllGood = false;
+                Toast.makeText(context, "You do not have enough money!",
+                        Toast.LENGTH_SHORT).show();
             }
-        }
-        //income
-        else {
-            accBalance += trans;
-        }
 
-        updateAccBalance(accBalance);
-        updateBudgetLeft(dedic_to_spend);
-        updateSaving(dedic_to_saving);
+            updateAccBalance(accBalance);
+            updateBudgetLeft(dedic_to_spend);
+            updateSaving(dedic_to_saving);
+            updateBuffer(buffer);
+        }
+        else{
+            accBalance+=trans;
+        }
 
     }
 
-    //Cal for next day
-    //Called when time is set to 00:00
-    public void calAverageSav(){
-        current_saving = current_saving +dedic_to_saving;
-        buffer = buffer + dedic_to_spend;
-        dedic_to_spend= fixed_dedic_spend;
+    //Calculation for next day
+    //Called when time hits 00:00
+    public void calAverageSav() {
+        //calculate the average saving
+        double savingSum = 0;
+
+            for (int i = 0; i < savings.size(); i++) {
+                savingSum += savings.get(i);
+            }
+
+        savingSum += dedic_to_saving;
+        avgSaving = savingSum / (savings.size() + 1);
+
+        //update the current saving and buffer
+        current_saving += dedic_to_saving;
+        buffer += dedic_to_spend;
+
+        //reset the amount dedicated to spending and saving back to their fixed amounts.
+        dedic_to_spend = fixed_dedic_spend;
         dedic_to_saving = fixed_dedic_save;
 
+        updateBudgetLeft(dedic_to_spend);
+        updateTotalSaving(current_saving);
+        updateSaving(dedic_to_saving);
+        updateBuffer(buffer);
+        updateDailySaving(avgSaving);
 
+    }
+
+    //Calculation for end of month
+    public void refreshBuffer() {
+        //update buffer
+        current_saving += buffer;
+
+        //cal avg
+        double avgBuf = buffer /= 30;
+        avgSaving = avgBuf;
+        buffer = 0;
+        updateDailySaving(avgSaving);
+        updateBuffer(buffer);
     }
 
     public void updateAccBalance(double delta) {
@@ -239,8 +307,22 @@ public class insert_form extends Activity {
 
     public void updateSaving(double delta) {
         //Update them saving
-        userRef.child("saving_goal").setValue(delta);
+        userRef.child("saving_remain").setValue(delta);
 
+    }
+
+    public void updateDailySaving(double delta) {
+        //update daily saving average
+        userRef.child("avgSaving").setValue(delta);
+    }
+
+    public void updateBuffer(double delta) {
+        //update buffer
+        userRef.child("buffer").setValue(delta);
+    }
+    public void updateTotalSaving(double delta) {
+        //update buffer
+        userRef.child("total_saving").setValue(delta);
     }
 
     ;

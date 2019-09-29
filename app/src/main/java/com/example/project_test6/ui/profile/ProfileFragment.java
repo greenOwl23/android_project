@@ -52,6 +52,7 @@ public class ProfileFragment extends Fragment {
     private TextView displayBalance;
     private TextView displaySaving;
     private TextView displayLvl;
+    private TextView saving_remain;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference dRef;
@@ -94,6 +95,7 @@ public class ProfileFragment extends Fragment {
         displayBalance = root.findViewById(R.id.account_balance);
         displaySaving = root.findViewById(R.id.saving);
         displayLvl = root.findViewById(R.id.user_lvl);
+        saving_remain = root.findViewById(R.id.saving);
         firebaseDatabase = FirebaseDatabase.getInstance();
         userRef = firebaseDatabase.getReference().child("users").child(uid);
         userRef.addValueEventListener(new ValueEventListener() {
@@ -106,14 +108,14 @@ public class ProfileFragment extends Fragment {
                 String name = String.valueOf(map.get("displayName"));
                 String balance = String.valueOf(map.get("balance"));
                 String lvl = String.valueOf(map.get("lvl"));
+                String Saving_remain = String.valueOf(map.get("saving_remain"));
 //                String saving = String.valueOf(map.get(saving));
 //                Log.e(TAG, "Value is: " + value);
 
                 displayName.setText(name);
                 displayBalance.setText("Account Balance : " +balance);
                 displayLvl.setText("Level : "+lvl);
-                displaySaving.setText("Saving : ");
-
+                saving_remain.setText("Saving : "+Saving_remain);
 
             }
 
