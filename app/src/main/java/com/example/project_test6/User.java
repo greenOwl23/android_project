@@ -16,7 +16,7 @@ public class User {
 
     public Transaction[] transaction;
     public String[] categories;
-    //public Saving[] savings;
+    public Saving[] savings;
     public double daily_budget_remain;
     public double buffer;
     public double total_saving;
@@ -34,6 +34,7 @@ public class User {
         this.lvl = 0;
         this.buffer = 0;
         this.total_saving = 0;
+        this.savings;
     }
 
     public double getDaily_budget() {

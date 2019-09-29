@@ -50,6 +50,7 @@ public class HomeFragment extends Fragment {
     private TextView acc_balance;
     private TextView bud_left;
     private TextView total_saving;
+    private TextView saving_goal;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference dRef;
@@ -79,6 +80,7 @@ public class HomeFragment extends Fragment {
         currentTime = Calendar.getInstance().getTime();
         acc_balance = root.findViewById(R.id.currentBalance);
         bud_left = root.findViewById(R.id.budget_left_amount);
+        saving_goal = root.findViewById(R.id.saving_Goal_Amount);
         total_saving = root.findViewById(R.id.saving_Total_Amount);
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
@@ -146,11 +148,13 @@ public class HomeFragment extends Fragment {
 //                String value = dataSnapshot.getValue(String.class);
                 String balance = String.valueOf(map.get("balance"));
                 String daily_budget = String.valueOf(map.get("daily_budget_remain"));
+                String saving_Goal = String.valueOf(map.get("saving_goal"));
                 String totalSave = String.valueOf(map.get("total_saving")) ;
 //                Log.e(TAG, "Value is: " + value);
                 acc_balance.setText(balance);
                 bud_left.setText(daily_budget);
                 total_saving.setText(totalSave);
+                saving_goal.setText(saving_Goal);
             }
 
             @Override

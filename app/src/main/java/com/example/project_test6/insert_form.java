@@ -214,6 +214,17 @@ public class insert_form extends Activity {
 
     }
 
+    //Cal for next day
+    //Called when time is set to 00:00
+    public void calAverageSav(){
+        current_saving = current_saving +dedic_to_saving;
+        buffer = buffer + dedic_to_spend;
+        dedic_to_spend= fixed_dedic_spend;
+        dedic_to_saving = fixed_dedic_save;
+
+
+    }
+
     public void updateAccBalance(double delta) {
         // Write a message to the database
         userRef.child("balance").setValue(delta);
