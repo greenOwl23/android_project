@@ -124,8 +124,8 @@ public class HistoryFragment extends Fragment {
     }
     public void removeItem(int position){
         transactions.remove(position);
-//        String uid = user.getUid();
-//        dRef.child("users").child(uid).child("Transactions").setValue(transactions);
+        String uid = user.getUid();
+        dRef.setValue(transactions);
         adapter.notifyItemRemoved(position);
 
     }
