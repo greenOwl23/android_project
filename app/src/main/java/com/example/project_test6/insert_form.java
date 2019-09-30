@@ -73,11 +73,13 @@ public class insert_form extends Activity {
     double avgSaving;
     double accBalance;
     boolean isAllGood = true;
+    DatabaseReference savingRef;
 
     ArrayList<Double> savings = new ArrayList<Double>();
+    ArrayList<Saving> savingList = new ArrayList<Saving>();
 
     String localDisplayName;
-
+    public insert_form(){}
     //TODO: make buffer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +94,44 @@ public class insert_form extends Activity {
         userSaveRef = firebaseDatabase.getReference().child("users").child(uid).child("savings");
 
         // Read from the database
+
+
+        savingRef = firebaseDatabase.getReference().child("users").child(uid).child("savings");
+
+        // Read from the database
+        savingRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dsBitch: dataSnapshot.getChildren()){
+                    Map map = (Map)dsBitch.getValue();
+                    String str_amount = String.valueOf(map.get("amount"));
+                    String str_isSaved = String.valueOf(map.get("isSaved"));
+                    String str_timestamp = String.valueOf(map.get("timestamp"));
+
+                    Log.e(TAG, str_amount);
+                    Log.e(TAG, str_isSaved);
+                    Log.e(TAG, str_timestamp);
+
+                    Double amount = Double.parseDouble(str_amount);
+                    Boolean isSaved = Boolean.parseBoolean(str_isSaved);
+                    Date timestamp = null;
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
+                    try {
+                        timestamp = formatter.parse(str_timestamp);//catch exception
+                    } catch (ParseException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    savingList.add(new Saving(str_timestamp,amount,false));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -199,7 +239,7 @@ public class insert_form extends Activity {
 
                         }
                         savings.add(dedic_to_saving);
-                        calAverageSav();
+//                        calAverageSav();
 
                         startActivity(new Intent(insert_form.this, MainPage.class));
                     } else {
@@ -252,35 +292,6 @@ public class insert_form extends Activity {
 
     }
 
-    //Calculation for next day
-    //Called when time hits 00:00
-    public void calAverageSav() {
-        //calculate the average saving
-        double savingSum = 0;
-
-            for (int i = 0; i < savings.size(); i++) {
-                savingSum += savings.get(i);
-            }
-
-        savingSum += dedic_to_saving;
-        avgSaving = savingSum / (savings.size() + 1);
-
-        //update the current saving and buffer
-        current_saving += dedic_to_saving;
-        buffer += dedic_to_spend;
-
-        //reset the amount dedicated to spending and saving back to their fixed amounts.
-        dedic_to_spend = fixed_dedic_spend;
-        dedic_to_saving = fixed_dedic_save;
-
-        updateBudgetLeft(dedic_to_spend);
-        updateTotalSaving(current_saving);
-        updateSaving(dedic_to_saving);
-        updateBuffer(buffer);
-        updateDailySaving(avgSaving);
-
-    }
-
     //Calculation for end of month
     public void refreshBuffer() {
         //update buffer
@@ -294,10 +305,16 @@ public class insert_form extends Activity {
         updateBuffer(buffer);
     }
 
+    //TODO:
+
+
+    // TODO: IMPLEMENT ALL THE METHODS BELOW
     public void updateAccBalance(double delta) {
         // Write a message to the database
         userRef.child("balance").setValue(delta);
-
+    }
+    public void updateSavingList(ArrayList<Saving> delta){
+        userRef.child("savingList").setValue(delta);
     }
 
     public void updateBudgetLeft(double delta) {
@@ -309,7 +326,6 @@ public class insert_form extends Activity {
     public void updateSaving(double delta) {
         //Update them saving
         userRef.child("saving_remain").setValue(delta);
-
     }
 
     public void updateDailySaving(double delta) {
@@ -325,6 +341,8 @@ public class insert_form extends Activity {
         //update buffer
         userRef.child("total_saving").setValue(delta);
     }
-
-    ;
+    public void eventTrigger(){
+        Toast.makeText(context, "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd!",
+                Toast.LENGTH_LONG).show();
+    }
 }
