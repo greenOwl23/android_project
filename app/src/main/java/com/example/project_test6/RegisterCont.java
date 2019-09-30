@@ -65,6 +65,7 @@ public class RegisterCont extends AppCompatActivity {
 //            dbRoot.child("users").child(uid).child("dedic_to_saving").setValue(opDecSaving);
             dbRoot.child("users").child(uid).child("daily_budget_remain").setValue(opDecSpen);
             dbRoot.child("users").child(uid).child("saving_remain").setValue(opSavingGoal);
+//            dbRoot.child("users").child(uid).child("Transactions").push().setValue();
             startActivity(new Intent(RegisterCont.this, MainPage.class));
         }else{
             Toast.makeText(context, "Please fill in all the information!",
