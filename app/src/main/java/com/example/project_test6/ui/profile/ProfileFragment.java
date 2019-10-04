@@ -40,20 +40,21 @@ import java.util.Map;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class ProfileFragment extends Fragment {
-
-    private ArrayList<Ach> aches;
+    // Variables for recycler view aches adapter
     private ProfileViewModel profileViewModel;
+    private ArrayList<Ach> aches;
     private RecyclerView recyclerView;
     private achAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    // UI display's variables
     private ImageView userImg;
-    private ProfileViewModel notificationsViewModel;
     private TextView displayName;
     private TextView displayBalance;
-    private TextView displaySaving;
     private TextView displayLvl;
     private TextView saving_remain;
 
+    //Database variables
     FirebaseDatabase firebaseDatabase;
     DatabaseReference dRef;
     DatabaseReference userRef;
@@ -62,9 +63,10 @@ public class ProfileFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
+        profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        //Placeholders for achievements
         aches = new ArrayList<>();
         createAch("Banana","Eat a banana",2);
         createAch("Banana","Eat a banana",2);
@@ -73,6 +75,19 @@ public class ProfileFragment extends Fragment {
         createAch("Banana","Eat a banana",2);
         createAch("Banana","Eat a banana",2);
 
+        //Initialize variables
+        displayName = root.findViewById(R.id.name);
+        displayBalance = root.findViewById(R.id.account_balance);
+        displayLvl = root.findViewById(R.id.user_lvl);
+        saving_remain = root.findViewById(R.id.saving);
+
+        //Initialize variables for database
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        uid = user.getUid();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        userRef = firebaseDatabase.getReference().child("users").child(uid);
+
+        //Initialize variables for recycler view aches adapter
         recyclerView = (RecyclerView) root.findViewById(R.id.ach);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -80,6 +95,7 @@ public class ProfileFragment extends Fragment {
         adapter = new achAdapter(aches);
         recyclerView.setAdapter(adapter);
 
+        //Set onclick listener on user profile image that leads to the setting page
         userImg = root.findViewById(R.id.user_img);
         userImg.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -87,31 +103,19 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        uid = user.getUid();
-        displayName = root.findViewById(R.id.name);
-        displayBalance = root.findViewById(R.id.account_balance);
-        displaySaving = root.findViewById(R.id.saving);
-        displayLvl = root.findViewById(R.id.user_lvl);
-        saving_remain = root.findViewById(R.id.saving);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        userRef = firebaseDatabase.getReference().child("users").child(uid);
+        //Read in data from database for creating transaction object
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 Map map = (Map)dataSnapshot.getValue();
-//              String value = dataSnapshot.getValue(String.class);
                 String name = String.valueOf(map.get("displayName"));
                 String balance = String.valueOf(map.get("balance"));
                 String lvl = String.valueOf(map.get("lvl"));
                 String Saving_remain = String.valueOf(map.get("saving_remain"));
-//                String saving = String.valueOf(map.get(saving));
-//                Log.e(TAG, "Value is: " + value);
 
+                //Setting the display
                 displayName.setText(name);
                 displayBalance.setText("Account Balance : " +balance);
                 displayLvl.setText("Level : "+lvl);
@@ -126,18 +130,11 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-
-
-
-
-
         return root;
 
     }
+    //Method for creating and putting achievements into a list
     public void createAch(String ach, String condition, int counter){
-
-        //
         aches.add(new Ach(ach,condition,counter));
     }
 

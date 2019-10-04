@@ -23,53 +23,54 @@ import java.util.Map;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class User_Account_Setting extends AppCompatActivity implements View.OnClickListener {
+
+    // UI display's variables
     private EditText displayName;
     private EditText currentPassword;
     private EditText newPassword;
     private Button btn_save;
+
+    //Database variables
     FirebaseDatabase firebaseDatabase;
     DatabaseReference dRef;
     DatabaseReference userRef;
     FirebaseUser user;
     String uid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user__account__setting);
 
+        //Initialize variables
         displayName = findViewById(R.id.display_name);
         currentPassword = findViewById(R.id.new_pasword_reset);
         newPassword = findViewById(R.id.new_pasword_reset_confirm);
         btn_save = findViewById(R.id.save_Button);
         btn_save.setOnClickListener(this);
-//        Read from FIREBASE
 
-
+        //Initialize variables for database
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
         firebaseDatabase = FirebaseDatabase.getInstance();
         userRef = firebaseDatabase.getReference().child("users").child(uid);
 
+        //Read from database
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
                 Map map = (Map)dataSnapshot.getValue();
-//              String value = dataSnapshot.getValue(String.class);
                 String name = String.valueOf(map.get("displayName"));
-//                String saving = String.valueOf(map.get(saving));
-//                Log.e(TAG, "Value is: " + value);
                 displayName.setText(name);
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
     }
+    //Method used to reset the displayName
     protected void resetName(){
         String newName = displayName.getText().toString();
         userRef.child("displayName").setValue(newName);

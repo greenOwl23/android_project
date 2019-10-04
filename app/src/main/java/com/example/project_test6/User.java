@@ -4,17 +4,16 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.ArrayList;
 
+//Constructor for user object
 @IgnoreExtraProperties
 public class User {
     private double daily_budget;
-    //    public String username;
     public String email;
     public double balance;
     public String displayName;
     public double saving_goal;
     public double saving_remain;
     public int lvl;
-
     public Transaction[] transaction;
     public String[] categories;
     public double daily_budget_remain;
@@ -60,7 +59,6 @@ public class User {
     public void setAvgSaving(double avgSaving) {
         this.avgSaving = avgSaving;
     }
-
 
 
     public double getAvgSaving() {

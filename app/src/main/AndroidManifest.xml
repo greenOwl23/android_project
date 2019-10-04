@@ -16,16 +16,13 @@
         <activity android:name=".User_Account_Setting" android:screenOrientation="portrait"/>
         <activity
             android:name=".UserSetting"
-            android:theme="@style/popup" android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"/>
         <activity android:name=".RegisterCont" android:screenOrientation="portrait"/>
         <activity android:name=".Register" android:screenOrientation="portrait"/>
         <activity android:name=".Login" android:screenOrientation="portrait"/>
         <activity
             android:name=".insert_form"
-            android:theme="@style/popup" android:screenOrientation="portrait"/>
-        <activity
-            android:name=".Popup"
-            android:theme="@style/popup" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainPage" android:screenOrientation="portrait"
             android:label="@string/title_activity_mainpage"/>

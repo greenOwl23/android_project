@@ -44,26 +44,29 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 public class insert_form extends Activity {
-    private FirebaseAuth mAuth;
-    DatabaseReference dbRoot;
+
+    // Variables for display and inputs
     private Spinner typeList, category;
     private Button btn_Add;
     private EditText amount;
+    private String Food = "Food";
+    private String Car = "Car";
+    private String Health = "Health";
+    private String Income = "Income";
+    private String Expense = "Expense";
+
+    //Database variables
     Context context = this;
     String TAG = "InsertForm";
+    private FirebaseAuth mAuth;
+    private DatabaseReference dbRoot;
+    private FirebaseUser user;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference userRef;
+    private String uid;
+    DatabaseReference savingRef;
 
-
-    FirebaseUser user;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference dRef;
-    DatabaseReference userSaveRef;
-    DatabaseReference userRef;
-    String uid;
-
-    String Food = "Food";
-    String Car = "Car";
-    String Health = "Health";
-    User localUser;
+    //Variables used for calculations
     double fixed_dedic_spend;
     double fixed_dedic_save;
     double dedic_to_spend;
@@ -73,29 +76,25 @@ public class insert_form extends Activity {
     double avgSaving;
     double accBalance;
     boolean isAllGood = true;
-    DatabaseReference savingRef;
-
     ArrayList<Double> savings = new ArrayList<Double>();
     ArrayList<Saving> savingList = new ArrayList<Saving>();
 
-    String localDisplayName;
-    public insert_form(){}
-    //TODO: make buffer
+    public insert_form() {
+        // Default constructor required for calls to DataSnapshot.getValue(insert_form.class)
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_form);
+
+        //Initialize variables for database
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         user = mAuth.getCurrentUser();
         uid = user.getUid();
         dbRoot = FirebaseDatabase.getInstance().getReference();
         userRef = firebaseDatabase.getReference().child("users").child(uid);
-        userSaveRef = firebaseDatabase.getReference().child("users").child(uid).child("savings");
-
-        // Read from the database
-
-
         savingRef = firebaseDatabase.getReference().child("users").child(uid).child("savings");
 
         // Read from the database
@@ -103,27 +102,20 @@ public class insert_form extends Activity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dsBitch: dataSnapshot.getChildren()){
-                    Map map = (Map)dsBitch.getValue();
+                for (DataSnapshot dsBitch : dataSnapshot.getChildren()) {
+                    Map map = (Map) dsBitch.getValue();
                     String str_amount = String.valueOf(map.get("amount"));
                     String str_isSaved = String.valueOf(map.get("isSaved"));
                     String str_timestamp = String.valueOf(map.get("timestamp"));
+                    Double amount = Double.parseDouble(str_amount);
 
+                    //Check values
                     Log.e(TAG, str_amount);
                     Log.e(TAG, str_isSaved);
                     Log.e(TAG, str_timestamp);
 
-                    Double amount = Double.parseDouble(str_amount);
-                    Boolean isSaved = Boolean.parseBoolean(str_isSaved);
-                    Date timestamp = null;
-                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
-                    try {
-                        timestamp = formatter.parse(str_timestamp);//catch exception
-                    } catch (ParseException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                    savingList.add(new Saving(str_timestamp,amount,false));
+                    //Putting savings object created from the database in a list
+                    savingList.add(new Saving(str_timestamp, amount, false));
                 }
             }
 
@@ -133,6 +125,7 @@ public class insert_form extends Activity {
             }
         });
 
+        // Read from the database
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -143,7 +136,7 @@ public class insert_form extends Activity {
                 accBalance = Double.parseDouble(String.valueOf(map.get("balance")));
                 fixed_dedic_save = Double.parseDouble(String.valueOf(map.get("saving_goal")));
                 fixed_dedic_spend = Double.parseDouble(String.valueOf(map.get("daily_budget")));
-                fixed_dedic_spend-=fixed_dedic_save;
+                fixed_dedic_spend -= fixed_dedic_save;
                 dedic_to_saving = Double.parseDouble(String.valueOf(map.get("saving_remain")));
                 current_saving = Double.parseDouble(String.valueOf(map.get("total_saving")));
                 buffer = Double.parseDouble(String.valueOf(map.get("buffer")));
@@ -156,17 +149,21 @@ public class insert_form extends Activity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-        userSaveRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        // Read from the database
+        savingRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dsBitch : dataSnapshot.getChildren()) {
                     Map map = (Map) dsBitch.getValue();
                     String amount = String.valueOf(map.get("amount"));
+                    Double am = Double.parseDouble(amount);
 
+                    //Check values
                     Log.e(TAG, amount);
 
-                    Double am = Double.parseDouble(amount);
+                    //Add the saving amount to list
                     savings.add(am);
 
                 }
@@ -184,11 +181,10 @@ public class insert_form extends Activity {
     }
 
     public void addItemsOnSpinner() {
-
         typeList = (Spinner) findViewById(R.id.typeList);
         List<String> list = new ArrayList<String>();
-        list.add("Expense");
-        list.add("Income");
+        list.add(Expense);
+        list.add(Income);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -210,15 +206,16 @@ public class insert_form extends Activity {
 
     // get the selected dropdown list value
     public void addListenerOnButton() {
+
+        //Initiate variables used for creating transaction object
         typeList = (Spinner) findViewById(R.id.typeList);
         category = (Spinner) findViewById(R.id.category);
         amount = (EditText) findViewById(R.id.amount);
         btn_Add = (Button) findViewById(R.id.btnAdd);
 
-//        for(double saving : savings){
-//            Log.e(TAG,String.valueOf(saving));
-//        }
         if (user != null) {
+
+            //Add onclick listener to button
             btn_Add.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -227,19 +224,23 @@ public class insert_form extends Activity {
                     String ip_category = category.getSelectedItem().toString();
                     String str_amount = amount.getText().toString();
 
+                    //Make sure that the user fill in the amount of their transaction
                     if (!str_amount.isEmpty()) {
                         int ip_amount = Integer.parseInt(amount.getText().toString());
+
+                        //Make a new transaction object
                         Transaction newTransaction = new Transaction(ip_type, ip_category, ip_amount);
+
+                        //Call the transaction calculation method
                         calTransac(typeList.getSelectedItem().toString(), ip_amount);
 
-                        if(isAllGood){
+                        //Making sure that the user have enough capital to make the transaction
+                        if (isAllGood) {
                             dbRoot.child("users").child(uid).child("Transactions").push().setValue(newTransaction);
                             Toast.makeText(context, "Added!",
                                     Toast.LENGTH_SHORT).show();
-
                         }
                         savings.add(dedic_to_saving);
-//                        calAverageSav();
 
                         startActivity(new Intent(insert_form.this, MainPage.class));
                     } else {
@@ -255,35 +256,36 @@ public class insert_form extends Activity {
 
     }
 
+    //Method for making updates to the data based on the transaction made
     public void calTransac(String tranType, double trans) {
         if (tranType.equals("Expense")) {
-
             if (dedic_to_spend >= trans) {
-                accBalance-=trans;
+                accBalance -= trans;
                 dedic_to_spend -= trans;
             } else if ((dedic_to_spend + dedic_to_saving) >= trans) {
-                accBalance-=trans;
+                accBalance -= trans;
                 dedic_to_saving = (dedic_to_saving + dedic_to_spend) - trans;
                 dedic_to_spend = 0;
             } else if ((dedic_to_spend + dedic_to_saving + buffer) >= trans) {
-                accBalance-=trans;
+                accBalance -= trans;
                 buffer = (dedic_to_saving + dedic_to_spend + buffer) - trans;
                 dedic_to_spend = 0;
                 dedic_to_saving = 0;
             } else if ((dedic_to_spend + dedic_to_saving + buffer + accBalance) >= trans) {
-                accBalance = (accBalance+dedic_to_spend + dedic_to_saving + buffer) - trans;
+                accBalance = (accBalance + dedic_to_spend + dedic_to_saving + buffer) - trans;
                 dedic_to_spend = 0;
                 dedic_to_saving = 0;
                 buffer = 0;
             } else {
-               isAllGood = false;
+                isAllGood = false;
                 Toast.makeText(context, "You do not have enough money!",
                         Toast.LENGTH_SHORT).show();
             }
+        } else {
+            accBalance += trans;
         }
-        else{
-            accBalance+=trans;
-        }
+
+        //Update the database after the calculation processes
         updateAccBalance(accBalance);
         updateBudgetLeft(dedic_to_spend);
         updateSaving(dedic_to_saving);
@@ -291,7 +293,7 @@ public class insert_form extends Activity {
 
     }
 
-    //Calculation for end of month
+    //Calculation for end of month, not tested
     public void refreshBuffer() {
         //update buffer
         current_saving += buffer;
@@ -304,15 +306,12 @@ public class insert_form extends Activity {
         updateBuffer(buffer);
     }
 
-    //TODO:
-
-
-    // TODO: IMPLEMENT ALL THE METHODS BELOW
     public void updateAccBalance(double delta) {
         // Write a message to the database
         userRef.child("balance").setValue(delta);
     }
-    public void updateSavingList(ArrayList<Saving> delta){
+
+    public void updateSavingList(ArrayList<Saving> delta) {
         userRef.child("savingList").setValue(delta);
     }
 
@@ -336,12 +335,10 @@ public class insert_form extends Activity {
         //update buffer
         userRef.child("buffer").setValue(delta);
     }
+
     public void updateTotalSaving(double delta) {
         //update buffer
         userRef.child("total_saving").setValue(delta);
     }
-    public void eventTrigger(){
-        Toast.makeText(context, "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd!",
-                Toast.LENGTH_LONG).show();
-    }
+
 }

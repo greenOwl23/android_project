@@ -1,5 +1,6 @@
 package com.example.project_test6;
 
+//Constructor for achievements
 public class Ach {
     private String ach;
     private String condition;

@@ -12,15 +12,17 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+//Constructor for transaction
 @IgnoreExtraProperties
 public class Transaction {
     private Date timestamp;
     private String type;
-//<<<<<<< HEAD
     private String category;
     private  double amount;
 
-    public Transaction(){}
+    public Transaction(){
+        // Default constructor required for calls to DataSnapshot.getValue(Transaction.class)
+    }
 
     public Transaction (String type, String category, int amount){
         this.timestamp = new Date();
@@ -30,15 +32,8 @@ public class Transaction {
 
     }
 
-    ///TEMPT*********************************************
-//    public Transaction (Date timestamp,String type, String category, int amount){
-//=======
-//    private String category;
-//    private  double amount;
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Transaction (Date timestamp, String type, String category, double amount){
-//>>>>>>> remotes/origin/ui_test
         this.timestamp = timestamp;
         this.type = type;
         this.category = category;

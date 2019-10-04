@@ -3,12 +3,15 @@ package com.example.project_test6;
 import java.sql.Timestamp;
 import java.util.Date;
 
+//Constructor for savings object
 public class Saving {
     private String timestamp;
     private double amount;
     private boolean status;
 
-    public Saving(){}
+    public Saving(){
+        // Default constructor required for calls to DataSnapshot.getValue(Saving.class)
+    }
 
     public Saving(String timestamp, double amount,boolean status) {
         this.timestamp = timestamp;

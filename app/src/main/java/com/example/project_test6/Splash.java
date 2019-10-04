@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Splash extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 2000;
 
 
     @Override
@@ -19,8 +19,9 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
         mAuth = FirebaseAuth.getInstance();
-//        boolean test = false;
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        //Check if the user is logged in to the system
         if (currentUser != null){
             new Handler().postDelayed(new Runnable() {
                 @Override

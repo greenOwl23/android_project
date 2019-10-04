@@ -43,13 +43,14 @@ import java.util.Map;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class HomeFragment extends Fragment {
-
-    private ArrayList<Transaction> transactions;
     private HomeViewModel homeViewModel;
-
+    // Variables for recycler view transactions adapter
+    private ArrayList<Transaction> transactions;
     private RecyclerView recyclerView;
     private TransactionAdapterHome adapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    // UI display's variables
     private TextView acc_balance;
     private TextView bud_left;
     private TextView total_saving;
@@ -60,8 +61,8 @@ public class HomeFragment extends Fragment {
     private TextView avgYear;
     private Button updateButton;
     private String testNextDayLast;
-    private String testNextDayCurrent;
 
+    //Variables used for calculations
     double currentSaving;
     double fixed_dedic_spend;
     double fixed_dedic_save;
@@ -69,18 +70,15 @@ public class HomeFragment extends Fragment {
     double dedic_to_saving;
     double buffer_amount;
     double avgSaving;
-
     ArrayList<Saving> savingList = new ArrayList<Saving>();
 
+    //Database variables
     FirebaseDatabase firebaseDatabase;
     DatabaseReference dRef;
     DatabaseReference userRef;
-
     FirebaseUser user;
     String uid;
     Date currentTime;
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -89,9 +87,9 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        //Floating button on homepage used for adding new transactions
         ImageView img = (ImageView) root.findViewById(R.id.button_insert);
         img.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), insert_form.class);
@@ -99,8 +97,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        //TODO: Make sure the total does not exceed account
-
+        //Initialize variables
         currentTime = Calendar.getInstance().getTime();
         acc_balance = root.findViewById(R.id.currentBalance);
         bud_left = root.findViewById(R.id.budget_left_amount);
@@ -111,16 +108,15 @@ public class HomeFragment extends Fragment {
         avgMonth = root.findViewById(R.id.amount_month);
         avgYear = root.findViewById(R.id.amount_year);
 
-
+        //Initialize variables for database
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
-
         firebaseDatabase = FirebaseDatabase.getInstance();
         dRef = firebaseDatabase.getReference().child("users").child(uid).child("Transactions");
         userRef = firebaseDatabase.getReference().child("users").child(uid);
 
+        //Initialize variables for recycler view transactions adapter
         transactions = new ArrayList<>();
-
         recyclerView = (RecyclerView) root.findViewById(R.id.recent_list);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -128,6 +124,7 @@ public class HomeFragment extends Fragment {
         adapter = new TransactionAdapterHome(transactions);
         updateButton = root.findViewById(R.id.update);
 
+        //Read in data from database for creating transaction object
         dRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -137,36 +134,35 @@ public class HomeFragment extends Fragment {
                     String cate = String.valueOf(map.get("category"));
                     String timestamp = String.valueOf(map.get("timestamp"));
                     String type = String.valueOf(map.get("type"));
-
                     testNextDayLast = timestamp;
+                    Double am = Double.parseDouble(amount);
 
+                    //Check values
                     Log.e(TAG, amount);
                     Log.e(TAG, cate);
                     Log.e(TAG, timestamp);
                     Log.e(TAG, type);
 
-                    Double am = Double.parseDouble(amount);
-
+                    //Parsing the date
                     Date date = null;
                     try {
                         date = new SimpleDateFormat("yyyy.MM.dd").parse(timestamp);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
+
+                    //Putting transactions object created from the database in a list
                     createTransaction(date, type, cate, am);
+
+                    //Limit the transaction display to 4 items
                     if (transactions.size() > 4) {
                         transactions.remove(0);
                     }
 
-
-
-//
-
+                    //Update button that refresh data displayed, can only be pushed when the date changes
                     updateButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-//                            Log.e(TAG,String.valueOf(check));
-////                Log.e(TAG,testNextDayLast);
                             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
                             Date nextDate = null;
                             try {
@@ -174,7 +170,6 @@ public class HomeFragment extends Fragment {
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-//                Log.e("YYYY",String.valueOf(nextDate-check);
                             Date check = new Date();
 
                             SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
@@ -190,16 +185,18 @@ public class HomeFragment extends Fragment {
                             long hours = minutes / 60;
                             long days = hours / 24;
 
+                            //Check values
+                            Log.e("DIF", String.valueOf(diff));
+                            Log.e("Seconds", String.valueOf(seconds));
+                            Log.e("Minutes", String.valueOf(minutes));
+                            Log.e("Hours", String.valueOf(hours));
+                            Log.e("Day", String.valueOf(days));
 
-                            Log.e("DIF",String.valueOf(diff));
-                            Log.e("Seconds",String.valueOf(seconds));
-                            Log.e("Minutes",String.valueOf(minutes));
-                            Log.e("Hours",String.valueOf(hours));
-                            Log.e("Day",String.valueOf(days));
-                            if (days != 0){
+                            //Check condition if date is different
+                            if (days != 0) {
                                 updateButton.setVisibility(View.VISIBLE);
                                 calAverageSav();
-                            }else{
+                            } else {
                                 updateButton.setVisibility(View.GONE);
                                 Toast.makeText(getContext(), "Can only add next day!",
                                         Toast.LENGTH_SHORT).show();
@@ -209,9 +206,8 @@ public class HomeFragment extends Fragment {
                     });
 
                 }
-
+                //Put the transactions list in the adapter
                 recyclerView.setAdapter(adapter);
-
             }
 
             @Override
@@ -227,7 +223,6 @@ public class HomeFragment extends Fragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 Map map = (Map) dataSnapshot.getValue();
-//                String value = dataSnapshot.getValue(String.class);
                 String balance = String.valueOf(map.get("balance"));
                 String daily_budget = String.valueOf(map.get("daily_budget_remain"));
                 String saving_remain = String.valueOf(map.get("saving_remain"));
@@ -235,7 +230,7 @@ public class HomeFragment extends Fragment {
                 String Buffer = String.valueOf(map.get("buffer"));
                 String Day_average = String.valueOf(map.get("avgSaving"));
 
-
+                //Reformatting the data type
                 buffer_amount = Double.parseDouble(String.valueOf(map.get("buffer")));
                 avgSaving = Double.parseDouble(String.valueOf(map.get("avgSaving")));
                 currentSaving = Double.parseDouble(String.valueOf(map.get("total_saving")));
@@ -243,9 +238,9 @@ public class HomeFragment extends Fragment {
                 dedic_to_spend = Double.parseDouble(String.valueOf(map.get("daily_budget_remain")));
                 fixed_dedic_save = Double.parseDouble(String.valueOf(map.get("saving_goal")));
                 fixed_dedic_spend = Double.parseDouble(String.valueOf(map.get("daily_budget")));
-                fixed_dedic_spend-=fixed_dedic_save;
+                fixed_dedic_spend -= fixed_dedic_save;
 
-
+                //Setting the display
                 acc_balance.setText(balance);
                 bud_left.setText(daily_budget);
                 total_saving.setText(totalSave);
@@ -271,11 +266,13 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    //Method for creating and putting transactions into a list
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void createTransaction(Date date, String type, String category, double amount) {
         transactions.add(new Transaction(date, type, category, amount));
     }
 
+    //Calculate the average savings
     public void calAverageSav() {
         //calculate the average saving
         double savingSum = 0;
@@ -286,10 +283,6 @@ public class HomeFragment extends Fragment {
         } else {
             Log.e(TAG, "Saving list is Empty");
         }
-//            for (int i = 0; i < savings.size(); i++) {
-//                savingSum += savings.get(i);
-//            }
-
 
         savingSum += dedic_to_saving;
         avgSaving = savingSum / (savingList.size() + 1);
@@ -302,6 +295,7 @@ public class HomeFragment extends Fragment {
         dedic_to_spend = fixed_dedic_spend;
         dedic_to_saving = fixed_dedic_save;
 
+        //Call the update methods to update the data to the database
         updateBudgetLeft(dedic_to_spend);
         updateTotalSaving(currentSaving);
         updateSaving(dedic_to_saving);
@@ -310,10 +304,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    public void updateSavingList(ArrayList<Saving> delta) {
-        userRef.child("savingList").setValue(delta);
-    }
-
+    //Methods used to update data to the database
     public void updateBudgetLeft(double delta) {
         //Update them budget
         userRef.child("daily_budget_remain").setValue(delta);
@@ -326,17 +317,17 @@ public class HomeFragment extends Fragment {
     }
 
     public void updateDailySaving(double delta) {
-        //update daily saving average
+        //update them daily saving average
         userRef.child("avgSaving").setValue(delta);
     }
 
     public void updateBuffer(double delta) {
-        //update buffer
+        //update them buffer
         userRef.child("buffer").setValue(delta);
     }
 
     public void updateTotalSaving(double delta) {
-        //update buffer
+        //update them buffer
         userRef.child("total_saving").setValue(delta);
     }
 

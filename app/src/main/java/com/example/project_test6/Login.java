@@ -38,23 +38,14 @@ public class Login extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         new_username = findViewById(R.id.email_login);
         new_password = findViewById(R.id.password);
-        button= findViewById(R.id.login_Button);
-//        email = findViewById(R.id.email_login);
-//        password = findViewById(R.id.password);
+        button = findViewById(R.id.login_Button);
         register = findViewById(R.id.register);
 
         register.setText(R.string.register);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//<<<<<<< HEAD
-                //Log in the user
-//                startActivity(new Intent(Login.this, MainPage.class));
-                signIn();
-//=======
-                //Login the user
-//                startActivity(new Intent(Login.this, MainPage.class));
-//>>>>>>> 3a72a548f0794335ccc99382c4c63b9eacaed02d
+
             }
         });
 
@@ -66,33 +57,28 @@ public class Login extends AppCompatActivity {
         });
 
     }
-    private void signIn(){
+
+    private void signIn() {
         String email = new_username.getText().toString();
         String password = new_password.getText().toString();
 
-        if(!email.isEmpty() && !password.isEmpty() ){
+        if (!email.isEmpty() && !password.isEmpty()) {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithEmail:success");
-
-//                            user = mAuth.getCurrentUser();
                                 startActivity(new Intent(Login.this, MainPage.class));
                             } else {
-                                // If sign in fails, display a message to the user.
-//                            Log.w(TAG, "signInWithEmail:failure", task.getException());
                                 Toast.makeText(getApplicationContext(), "Wrong username or password", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-        }else {
+        } else {
             Toast.makeText(getApplicationContext(), "Please fill in the username and passsword.",
                     Toast.LENGTH_SHORT).show();
         }
-
 
 
     }
